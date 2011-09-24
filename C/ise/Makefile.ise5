@@ -1,0 +1,25 @@
+# Copyright 1998 Richie Bielak and others
+# Licensed under Eiffel Forum Freeware License, version 1;
+# (see forum.txt)
+
+CFLAGS = `gtk-config --cflags`
+INCLUDE = -I$(ISE_EIFFEL)/studio/spec/linux-glibc2.1/include -I.
+
+all: eif_gtk.o eif_gdk.o eif_gtk_ise.o widget_fact.o
+	ar rc eif_gtk.a *.o
+
+eif_gtk.o: ../eif_gtk.c eif_gtk.h
+	gcc -c -g $(INCLUDE) $(CFLAGS) ../eif_gtk.c -o eif_gtk.o
+
+eif_gdk.o: ../eif_gdk.c eif_gtk.h
+	gcc -c -g $(INCLUDE) $(CFLAGS) ../eif_gdk.c -o eif_gdk.o
+
+eif_gtk_ise.o: eif_gtk_ise.c eif_gtk.h
+	gcc -c -g $(INCLUDE) $(CFLAGS) eif_gtk_ise.c -o eif_gtk_ise.o
+
+widget_fact.o: ../widget_fact.c eif_gtk.h
+	gcc -c -g $(INCLUDE) $(CFLAGS) ../widget_fact.c
+
+clean:
+	rm *.o
+	rm *.a

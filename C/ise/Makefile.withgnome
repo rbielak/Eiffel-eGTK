@@ -1,0 +1,32 @@
+# Copyright 1998 Richie Bielak and others
+# Licensed under Eiffel Forum Freeware License, version 1;
+# (see forum.txt)
+
+CFLAGS=`gnome-config --cflags gnome gnomeui`  
+
+INCLUDE = -I$(EIFFEL4)/bench/spec/linux-glibc/include -I.
+
+all: eif_gtk.o eif_gdk.o eif_gtk_ise.o widget_fact.o eif_gnome_ise.o eif_gnome_canvas.o
+	ar rc eif_gnome.a *.o
+
+eif_gtk.o: ../eif_gtk.c eif_gtk.h
+	gcc -c -g $(INCLUDE) $(CFLAGS) ../eif_gtk.c -o eif_gtk.o
+
+eif_gdk.o: ../eif_gdk.c eif_gtk.h
+	gcc -c -g $(INCLUDE) $(CFLAGS) ../eif_gdk.c -o eif_gdk.o
+
+eif_gtk_ise.o: eif_gtk_ise.c eif_gtk.h
+	gcc -c -g $(INCLUDE) $(CFLAGS) eif_gtk_ise.c -o eif_gtk_ise.o
+
+eif_gnome_canvas.o: ../eif_gnome_canvas.c
+	gcc -c -g $(INCLUDE) $(CFLAGS) ../eif_gnome_canvas.c -o eif_gnome_canvas.o
+
+eif_gnome_ise.o: eif_gnome_ise.c
+	gcc -c -g $(INCLUDE) $(CFLAGS) eif_gnome_ise.c -o eif_gnome_ise.o
+
+widget_fact.o: ../widget_fact.c eif_gtk.h
+	gcc -c -g $(INCLUDE) $(CFLAGS) ../widget_fact.c
+
+clean:
+	rm *.o
+	rm *.a

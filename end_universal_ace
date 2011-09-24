@@ -1,0 +1,82 @@
+   -- eGTK clusters
+   egtk               "${EGTK}/lib";
+   egtk_glib:         "${EGTK}/lib/glib";
+   egtk_glib_se:      "${EGTK}/lib/glib/se";
+   egtk_eifc:         "${EGTK}/lib/eifc";
+   egtk_eifc_se:      "${EGTK}/lib/eifc/se";
+   egtk_eifc_ext:     "${EGTK}/lib/eifc/externals";
+   egtk_gdk:          "${EGTK}/lib/gdk";
+   egtk_gdk_se:       "${EGTK}/lib/gdk/se";
+   egtk_gdk_ext:      "${EGTK}/lib/gdk/externals";
+   egtk_gtk:          "${EGTK}/lib/gtk";
+   egtk_gtk_se:       "${EGTK}/lib/gtk/se";
+   egtk_gtk_ext:      "${EGTK}/lib/gtk/externals";
+   egtk_egtk:         "${EGTK}/lib/egtk";
+   egtk_egtk_se:      "${EGTK}/lib/egtk/se";
+   egtk_gnome:        "${EGTK}/lib/gnome";
+   egtk_gnome_se:     "${EGTK}/lib/gnome/se";
+   egtk_gnome_canvas: "${EGTK}/lib/gnome/canvas";
+   egtk_gnome_ext:    "${EGTK}/lib/gnome/externals";
+
+   -- egnome clusters
+   egnome:              "${EGNOME}/lib";
+   egnome_gnomeobj:     "${EGNOME}/lib/gnomeobj";
+   egnome_gnomeobj_ext: "${EGNOME}/lib/gnomeobj/externals";
+   egnome_gnomeobj_se:  "${EGNOME}/lib/gnomeobj/se";
+   egnome_gnome:        "${EGNOME}/lib/gnome";
+   egnome_gnome_ext:    "${EGNOME}/lib/gnome/externals";
+   egnome_gnome_se:     "${EGNOME}/lib/gnome/se";
+   egnome_gnomeui:      "${EGNOME}/lib/gnomeui";
+   egnome_gnomeui_ext:  "${EGNOME}/lib/gnomeui/externals";
+   egnome_gnomeui_se:   "${EGNOME}/lib/gnomeui/se";
+   egnome_gnorba:       "${EGNOME}/lib/gnorba";
+   egnome_gnorba_ext:   "${EGNOME}/lib/gnorba/externals";
+   egnome_gnorba_se:    "${EGNOME}/lib/gnorba/se";
+
+   -- Gobo library
+   gobo:                  "${GOBO}/lib";
+   gobo_struct:           "${GOBO}/structure";
+   gobo_struct_container: "${GOBO}/structure/container";
+   gobo_struct_cursor:    "${GOBO}/structure/cursor";
+   gobo_struct_list:      "${GOBO}/structure/list";
+   gobo_struct_sort:      "${GOBO}/structure/sort";
+   gobo_struct_support:   "${GOBO}/structure/support";
+   gobo_struct_table:     "${GOBO}/structure/table";
+   gobo_struct_base:      "${GOBO}/structure/base";
+   gobo_struct_dispenser: "${GOBO}/structure/dispenser";
+   gobo_kernel:           "${GOBO}/kernel";
+   gobo_kernel_io:        "${GOBO}/kernel_io";
+   gobo_kernel_spec:      "${GOBO}/kernel/spec";
+   gobo_kernel_spec_se:   "${GOBO}/kernel/spec/se";
+
+   -- SmallEiffel
+   se_base:     "${SmallEiffelDirectory}/lib/base";
+   se_io:       "${SmallEiffelDirectory}/lib/io";
+   se_iterator: "${SmallEiffelDirectory}/lib/iterator";
+   se_kernel:   "${SmallEiffelDirectory}/lib/kernel";
+   se_number:   "${SmallEiffelDirectory}/lib/number";
+   se_random:   "${SmallEiffelDirectory}/lib/random";
+   se_sorting:  "${SmallEiffelDirectory}/lib/sorting";
+   se_time:     "${SmallEiffelDirectory}/lib/time";
+
+external -- section for elements written in another language
+   external_object_files: "${EGNOME}/C/se/eif_gnome.a ${EGTK}/C/se/eif_gtk.a"
+
+   external_c_files: "${EGTK}/C/se/eif_gtk_se.c"
+
+   cecil ("${EGTK}/C/se/cecil.se")
+   external_lib_path: "-L../../C  -L/usr/lib -L/usr/X11R6/lib"  
+   external_lib: "-rdynamic -lgnomeui -lart_lgpl -lgdk_imlib -lSM -lICE -lgnome -lgnomesupport -lesd -laudiofile -lgnorba -lORBitCosNaming -lORBit -lIIOP -lORBitutil -lgtk -lgdk -lgmodule -lglib -ldl -lXi -lXext -lX11 -lm"
+
+generate -- section
+
+   no_strip(yes);
+
+   no_split(no);
+
+   clean(no);
+
+   c_compiler_options : "-O -g -pipe -I. -I/usr/include -DNEED_GNOMESUPPORT_H -I/usr/lib/gnome-libs/include -I/usr/include/gtk-1.2 -I/usr/include/glib-1.2 -I/usr/lib/glib/include -I/usr/X11R6/include -I/usr/include/gnome-1.0  -I/usr/include/orbit-1.0"
+
+end
+

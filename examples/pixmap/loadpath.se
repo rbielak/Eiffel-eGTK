@@ -1,0 +1,13 @@
+${EGTK}/lib/gtk/
+${EGTK}/lib/gtk/se/
+${EGTK}/lib/gtk/externals/
+${EGTK}/lib/gdk/
+${EGTK}/lib/gdk/externals/
+${EGTK}/lib/gdk/se/
+${EGTK}/lib/egtk/
+${EGTK}/lib/egtk/se/
+${EGTK}/lib/eifc/
+${EGTK}/lib/eifc/se/
+${EGTK}/lib/eifc/externals/
+${EGTK}/examples/pixmap/
+

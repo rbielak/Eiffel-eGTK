@@ -1,0 +1,14 @@
+${EGTK}/lib/gtk/
+${EGTK}/lib/gtk/se/
+${EGTK}/lib/gtk/externals/
+${EGTK}/lib/gdk/
+${EGTK}/lib/gdk/se/
+${EGTK}/lib/gdk/externals/
+${EGTK}/lib/egtk/
+${EGTK}/lib/glib/
+${EGTK}/lib/eifc/
+${EGTK}/lib/eifc/se/
+${EGTK}/lib/eifc/externals/
+${EGTK}/lib/examples/drawing/
+
+

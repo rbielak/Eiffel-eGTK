@@ -1,0 +1,36 @@
+-- This ace file fragment should be included in the SmallEiffel ace file for any project
+-- that uses eGTK
+
+--------------------------------------- clusters section -------------------------------------
+   -- eGTK clusters
+   egtk: "${EGTK}/lib/glib";
+   egtk_se: "${EGTK}/lib/glib/se";
+   egtk_eifc: "${EGTK}/lib/eifc";
+   egtk_eifc_se: "${EGTK}/lib/eifc/se";
+   egtk_eifc_ext: "${EGTK}/lib/eifc/externals";
+   egtk_gdk: "${EGTK}/lib/gdk";
+   egtk_gdk_se: "${EGTK}/lib/gdk/se";
+   egtk_gdk_ext: "${EGTK}/lib/gdk/externals";
+   egtk_gtk: "${EGTK}/lib/gtk";
+   egtk_gtk_se: "${EGTK}/lib/gtk/se";
+   egtk_gtk_ext: "${EGTK}/lib/gtk/externals";
+   egtk_egtk: "${EGTK}/lib/egtk";
+   egtk_egtk_se: "${EGTK}/lib/egtk/se";
+   egtk_gnome: "${EGTK}/lib/gtk";
+   egtk_gtk_se: "${EGTK}/lib/gnome/se";
+   egtk_gtk_canvas: "${EGTK}/lib/gnome/canvas";
+   egtk_gtk_ext: "${EGTK}/lib/gnome/externals";
+
+--------------------------------------- external section -------------------------------------
+-- these lines should be added to or edited into the external section of the ace file
+   external_object_files: "${EGTK}/C/se/eif_gtk.a"
+   external_c_files: "${EGTK}/C/se/eif_gtk_se.c"
+   cecil ("${EGTK}/C/se/cecil.se")
+
+-- These lines should be modified according to the output of "gtk-config --libs"
+   external_lib_path: "-L/usr/lib -L/usr/X11R6/lib"
+   external_lib: "-lgtk -lgdk -rdynamic -lgmodule -lglib -ldl -lXi -lXext -lX11 -lm"
+
+--------------------------------------- generate section -------------------------------------
+-- This line should be modified according to the output of "gtk-config --cflags"
+   c_compiler_options : "-I/usr/include/gtk-1.2 -I/usr/include/glib-1.2 -I/usr/lib/glib/include -I/usr/X11R6/include"

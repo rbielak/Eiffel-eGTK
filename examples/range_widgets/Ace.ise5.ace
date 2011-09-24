@@ -1,0 +1,46 @@
+system
+	range_widgets
+
+root
+	RANGE_WIDGETS_APP (root_cluster): "make"
+
+default
+	assertion (all)
+	multithreaded (no)
+	console_application (no)
+	dynamic_runtime (no)
+	dead_code_removal (yes)
+	profile (no)
+	line_generation (no)
+	debug  (no)
+	array_optimization (no)
+	inlining (no)
+	inlining_size ("4")
+	precompiled ("$ISE_EIFFEL/precomp/spec/$PLATFORM/base");
+	address_expression (yes)
+
+
+cluster
+	
+	root_cluster: "$EGTK/examples/range_widgets";
+
+	-- eGTK
+	gtk: "$EGTK/lib/gtk";
+	gtk_ise: "$EGTK/lib/gtk/ise";
+	gtk_extern: "$EGTK/lib/gtk/externals";
+	gdk: "$EGTK/lib/gdk";
+	gdk_extern: "$EGTK/lib/gdk/externals";
+	gdk_ise: "$EGTK/lib/gdk/ise";
+	egtk: "$EGTK/lib/egtk";	
+	egtk_ise: "$EGTK/lib/egtk/ise";	
+	eifc: "$EGTK/lib/eifc";	
+	eifc_ise: "$EGTK/lib/eifc/ise";
+	eifc_extern: "$EGTK/lib/eifc/externals";
+	glib: "$EGTK/lib/glib";
+
+external
+	object:
+		"-lm `gtk-config --libs`",
+		"${EGTK}/C/ise/eif_gtk.a"
+
+end

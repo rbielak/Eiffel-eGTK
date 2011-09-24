@@ -1,0 +1,11 @@
+-- Copyright 1998 Richie Bielak and others
+-- Licensed under Eiffel Forum Freeware License, version 1;
+-- (see forum.txt)
+--
+eiffel.h
+-- features callable from C
+eiffel_entry_from_gtk GTK_COMMAND_TYPE entry_from_gtk
+eiffel_gtk_function_entry GTK_FUNCTION gtk_function_entry
+eiffel_gdk_input_execute GDK_INPUT_FUNCTION execute
+eiffel_gdk_input_notify GDK_INPUT_FUNCTION notify_of_fd_destruction
+

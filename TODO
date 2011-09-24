@@ -1,0 +1,141 @@
+TODO list for eGTK 0.3.5 prepared on July 8th, 2000.
+(always check the most recent CVS  to make sure that the stuff wasn't already done).
+
+example/image-scribble-simple
+	implement drawing with lines and points
+
+example/range_widget
+	extend this example. See main_window.e class
+
+example/test_gtk
+	test_gtk.e
+		many examples need still to be added as part of testk_gtk
+	c_list_cmd.e
+		Setting styles and fonts doesn't work right.
+	list_remove_selection.e
+		extended selection must be done differently 
+		maybe. Something seems to be needed with focus_child 
+		but I don't understand the code in the C example.
+	c_tree_cmd.e
+		export tree callback is not done
+		setting of styles not done
+	c_tree_remove_selection.e
+		update counts of pages 
+				
+lib/egtk
+
+	egtk_widget_factory.e
+		widgets are still missing from the factory
+	egtk_widget_type_names.e
+		complete the name list for all widgets (perhaps generate
+		it from C files)
+
+lib/gdk
+	gdk_button_press_cmd.e
+		is this class used anywhere?
+	gdk_button_release_cmd.e
+		is this class used anywhere?
+	gdk_gc_values.e
+		many functions needed to be filled in
+	gdk_modifier_type.e
+		implement this class
+	gdk_motion_command.e
+		is this class used anywhere?
+	gdk_object.e
+		put back exports when SmallEiffel gets its rename/export problem fixed
+	gdk_rectangle.e
+		If the rectangle is allocated in make, we need to 
+		dispose it when this object is collected. Should inherit
+		from C_STRUCT for memory management.
+
+lib/glib
+	g_list.e
+		implement "make_from_widget_array"
+		finish "is_equal" routine
+
+lib/gtk
+	externals/gtk_style_externals.e
+		decide what to do, if anything, about upper bound in get_xxx_gc contracts
+	gtk_adjustment.e
+		clone/copy for this class must always be "deep"
+	gtk_calendar.e
+		native GTK calls (UNTESTED) - TODO: replace POINTER types	
+		an example of calendar would be useful
+	gtk_clist.e
+		set_cell_pixmap
+			verify that this works together with cell_pixmap 
+			routine. Also check whether a gtk_pixmap or gdk_pixmap 
+			is to be returned
+		column_title_widget
+			we need to know what kind of widget this is and build an Eiffel
+			object from the GTK+ one.   GtkCList doesn't have this data.
+
+		cell_type and cell_text should probably be replaced along the 
+		lines of the routines in GTK_CTREE.  We should set last_text and/or 
+		last_pixmap and set a flag to say whether a read was successful.  
+		We can then check for pixtext as well.
+	gtk_colorsel.e
+		native GTK calls (UNTESTED) - replace POINTER types
+	gtk_composed_bin.e
+		We should now fill children with existing child widgets in
+		"make_from_pointer". In invariant check that count should 
+		equal the number of child widgets reported by the gtk C library.
+	gtk_ctree.e
+		set_node_info - not properly implemented.
+		get_node_info - should return correct Eiffel object
+	gtk_editable.e
+		implement "claim_selection"
+	gtk_file_selection.e
+		make_with_title - use widget factory to create ok/cancel buttons
+	gtk_layout.e
+		 native GTK calls (UNTESTED) - replace POINTER types
+	gtk_main.e
+		main_loop_iteration - not sure what the returned value means
+	gtk_menu.e
+		get_attach_widget
+			use widget factory here
+	gtk_menu_item.e
+		figure out and implement accelerator features
+		implement "set_placement"
+	gtk_pixmap.e
+		in "find_xmp" we should use the path from gtkrc file to find
+		the bitmap file
+	gtk_radio_menu_item.e
+		get rid of the pointers in several make routines.
+		"group", "set_group" should use a G_LIST
+	gtk_range.e	
+		implement trough_click (x, y: INTEGER; jump_perc): INTEGER
+		implement default_htrough_click (x, y: INTEGER; jump_perc): INTEGER
+		implement default_vtrough_click (x, y: INTEGER; jump_perc): INTEGER
+	gtk_scale.e
+		add queries
+	gtk_text.e
+		add text properties
+	gtk_tips_query.e
+		 native GTK calls (UNTESTED) - replace POINTER types
+	gtk_toggle_button.e
+		implement the ability to change the button's child,
+		whereupon the ugly rename and export{NONE} below can be
+		removed.
+	gtk_viewport.e
+		native GTK calls (UNTESTED) - replace POINTER types
+		(use EGTK_WIDGET_FACTORY)
+	ise/gtk_command_type.e
+		add routines for fetching other kinds of arguments
+		Add routines for returning other kinds of values
+	ise/gtk_non_portable_calls.e
+		Should GC be disabled in "np_make_array_pointer"
+		implement "np_gtk_rc_get_default_files"
+	se/gtk_non_portable_calls.e
+		implement "np_gtk_rc_get_default_files"
+	gtk_cell_pixmap.e
+		finish a bunch of routines
+	gtk_cell_pix_text.e
+		implement most of the features
+	gtk_cell_widget
+		implement most of its features
+	gtk_clist_row.e
+		cell - routine should be smarter to return right type of cell
+		implement most of the other routines
+
+Gnome/Eiffel interface needs a lot of work. 

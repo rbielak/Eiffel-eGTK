@@ -1,0 +1,33 @@
+
+default
+
+   assertion (require); 
+      -- The default level of assertion checking for the system.
+      -- Choose the appropriate value: boost, no, require, ensure, 
+      -- invariant, loop, check, all.
+
+   debug (no);
+      -- The default debug level for the system.
+      -- Choose yes, no, or any "key" you wish. 
+
+   trace (no);
+   collect (yes);
+   case_insensitive (yes);
+   no_style_warning (no);
+   no_warning (no);
+   verbose (no);
+
+cluster -- section
+
+   local: "."
+      default
+         assertion (all)
+         debug (yes);
+         trace (no);
+	local_actions: "./actions"
+	   default
+         assertion (all)
+         debug (yes);
+         trace (no);
+	
+

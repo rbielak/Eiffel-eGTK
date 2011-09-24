@@ -1,0 +1,138 @@
+this is for the people interested in getting eGTK running in the Windows environment.
+
+
+History
+=======
+- Sven Ehrke, April 17th, 2000
+  since eGTK got more and more popular in the Eiffel community I wondered if it
+  is possible to get it running under Windows. From some comments (in newsgroups and
+  the eGTK readme file it seemed to me that some tries had alreade been undertaken but
+  I could not see any information about how to get it really running. Therefore I tried
+  to do it myself. It helped me to have both Linux and WindowsNT available so I could
+  always look up how it works on Linux and thus try to find a way to get it running on
+  Windows as well. And after some struggling I got the hello ($EGTK/examples/hello)
+  example running !
+  So it seems that it is possible to get eGTK running on Windows.
+  I did not try out other examples at the moment. Please report further gained knowledge
+  to the eGTK mail group on www.egroups.com or put it to the CVS directory.
+
+
+
+Installation
+=============
+This describes my 'first shot' where my aim was simply to get the 'hello' example running.
+
+gtk+
+----
+eGTK relies on gtk+. So the first thing we need is gtk+ under Windows. Thanks to
+Tor Lillqvist this is already available: http://user.sgic.fi/~tml/gimp/win32/
+On this site you can get gimp for Windows (which is not important for our current
+purpose) and the developer packages (which are important for our purpose).
+Download 'glib-dev-yyyymmdd.zip' and 'gtk+-dev-yyyymmdd.zip'. yyyymmdd stands for the
+date Tor Lillqvist released the latest version. I used the 20000215 release and I just
+saw that 20000416 is out.
+Unzip the two files in a directory you like (say 'C:\src\gtk-windows' for this description).
+
+eiffel compiler
+---------------
+For my first shot I used smalleiffel (you can get it from http://SmallEiffel.loria.fr/)
+Here is a small description on how to install it on Windows:
+  Extract the se_xxxxxx.tgz file (or however it is called)
+  into a folder you like, say "C:\usr" (or some place you like)
+  this ends up with the "C:\usr\SmallEiffel" directory.
+
+  - open "C:\usr\SmallEiffel\sys\system.se" and replace "UNIX" with "Windows"
+  - Set the Environmentvariable 'SmallEiffel' to 'C:\usr\SmallEiffel\sys\system.se'
+  - open a terminal (dos box) in "C:\usr\SmallEiffel" and invoke 'install.exe'
+  you are asked to select a compiler:
+  use
+  - cl if you have installed Microsoft VC++            (!!! for my 'first shot' I used this)
+  - lcc if you have this one
+  - or gcc if you have it
+  - as the install program sys at the end: add "C:\usr\SmallEiffel\bin" to the PATH
+
+  - make sure SmallEiffel works by compiling one of the examples in the show_lib folder.
+
+eGTK
+======
+release available from http://www.netlabs.net/~richieb/gtk_eiffel.html
+or from CVS repository at cvs.debian.org/eiflib (which I used for my try)
+
+unzip/untar it into a directory you like, say 'C:\src\eGTK' and and have a look at
+the 'Readme' file. On windows we do the following: set the environment variable
+'EGTK' to 'C:\src\eGTK' (if you have the release version of eGTK I think you have
+to set also the environment variable 'EIFFEL_GTK' to 'C:\src\eGTK' but I am not sure
+about this (EIFFEL_GTK is the former name of eGTK).
+
+
+Compiling eGTK's C-part
+-----------------------
+The first thing we need to do (like on Linux) is to compile the C part or eGTK.
+A I mentioned before I used Visual C++ to get the hello example running. More work has
+to be done to find out how we can use lcc and/or gcc on windows.
+
+So open a command window and cd to %EGTK%\C\se. Create a new batch file called 'cp.bat'
+and copy the following text into it:
+------------------------- SNIP ----------------
+@echo off
+set INCLUDES=-I "C:\src\gtk-windows\gtk+" -I "C:\src\gtk-windows\glib" -I "DC:\src\gtk-windows\gtk+\gdk" -I.
+cl -c ../eif_gtk.c %INCLUDES%
+cl -c ../eif_gdk.c %INCLUDES%
+cl -c ../widget_fact.c %INCLUDES%
+cl -c eif_gtk_identified.c %INCLUDES%
+
+lib /OUT:eif_gtk.lib *.obj
+------------------------- SNIP ----------------
+execute cp.bat. This create the library file 'eif_gtk.lib'
+
+
+Compiling the hello example
+---------------------------
+cd to %EGTK\examples\hello and create again a batch file called 'cp.bat' with the following content:
+
+
+------------------------- SNIP ----------------
+@echo off
+
+set GTK=C:\src\gtk-windows
+set L_EIF_GTK=%EGTK%\C\se\eif_gtk.lib
+set L_GLIB=%GTK%\glib\glib-1.3.lib
+set L_GDK=%GTK%\gtk+\gdk\gdk-1.3.lib
+set L_GTK=%GTK%\gtk+\gtk\gtk-1.3.lib
+set L_GMODULE=%GTK%\glib\gmodule-1.3.lib
+
+set LIBS=%L_EIF_GTK% %L_GLIB% %L_GDK% %L_GTK% %L_GMODULE%
+set INCLUDES=-I "C:\src\gtk-windows\gtk+" -I "C:\src\gtk-windows\glib" -I "DC:\src\gtk-windows\gtk+\gdk" -I.
+
+compile -o hello2 -no_warning -cecil %EGTK%/C/se/cecil.se hello2 make  %LIBS% %EGTK%/C/se/eif_gtk_se.c %INCLUDES%
+------------------------- SNIP ----------------
+
+this should compile (although some warnings appear) and produce an exe file (hello2.exe).
+Now copy the following dll's into a directory your PATH points to.
+
+C:\src\gtk-windows\glib\glib-1.3.dll
+C:\src\gtk-windows\glib\gmodule-1.3.dll
+C:\src\gtk-windows\gtk+\gdk\gdk-1.3.dll
+C:\src\gtk-windows\gtk+\gtk\gtk-1.3.dll
+
+
+Now you should be able to execute hello2.exe and see a small window with a button labled 'Hello World!'.
+
+
+ToDo (everyone who likes to contribute very welcome)
+======================================================
+- use cygwin's distribution to be able to 'just' use the shell scripts provided by the eGTK distribution
+  (like 'egtkbuild' for example).
+
+- get it running with other C compilers like lcc and gcc
+
+- get it running with ISE Eiffel
+
+- getting the other eGTK examples running
+
+- getting eGlade running
+
+
+
+----------------------------------
+- Sven Ehrke, April 17th, 2000

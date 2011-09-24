@@ -1,0 +1,131 @@
+#!/bin/sh
+
+#
+# egtkbuild uses SmallEiffel to compile a system that depends on the eGTK
+# class library.
+#
+# To customise the build for your personal preferences, you may set certain
+# variables in $HOME/.egtkbuild.rc.  To customise for a particular
+# project, you can use ./.egtkbuild.rc; if this exists it is used instead
+# of $HOME/.egtkbuild.rc.
+#
+# .egtkbuild.rc must be Bourne shell script with execute permissions set
+# for the current user.
+#
+# .egtkbuild.rc should set the following variables, if necessary (the
+# default value is shown), which will override the default settings:
+#   COMPILE=compile_to_c
+#   SE_OPTS="-no_strip -no_style_warning -case_insensitive"
+#   DEBUG=-g
+#   OPTIMISE=-O
+#   EXTERNAL=
+#
+# It may also set these variables, which will be prepended to the default
+# options (therefore do not repeat the default options):
+#   CECIL      (default: "-cecil ${EGTK}/C/se/cecil.se")
+#   INCFLAGS   (default: "-I. `gtk-config --cflags`")
+#   LIBS       (default: "`gtk-config --libs`")
+
+syntax() {
+	echo "Usage: egtkbuild [-verbose | -with_gnome] <root-class-name>"
+	exit 1
+}
+
+found=TRUE
+while [ $found = TRUE ]
+do
+	if [ "$1" = -verbose ]
+	then
+		shift
+		verbose=TRUE
+	elif [ "$1" = -with_gnome ]
+	then
+		shift
+		with_gnome=TRUE
+	else
+		found=FALSE
+	fi
+done
+
+root_class=$1
+
+if [ -z "$root_class" -o -n "$2" ]
+then
+	syntax
+fi
+
+if [ "$verbose" = TRUE ]
+then
+	echo "Current settings:
+	SmallEiffel = $SmallEiffel
+	EGTK  = $EGTK
+"
+fi
+
+COMPILE=compile_to_c
+DEBUG=-g
+OPTIMISE=-O
+SE_OPTS="-no_strip -no_style_warning -case_insensitive"
+EXTERNAL=
+
+if [ "$with_gnome" = TRUE ]
+then
+	STATICLIB=${EGTK}/C/se/eif_gnome.a
+	GTKLIBS=`gnome-config --libs gnome gnomeui`
+else
+	STATICLIB=${EGTK}/C/se/eif_gtk.a
+	GTKLIBS=`gtk-config --libs`
+fi
+#GTKLIBS='/usr/lib/libgdk_g.a /usr/lib/libgtk_g.a'
+
+
+if [ -r ./.egtkbuild.rc ]
+then
+	if [ "$verbose" = TRUE ]
+	then
+		echo Reading ./.egtkbuild.rc
+	fi
+	. ./.egtkbuild.rc
+elif [ -r $HOME/.egtkbuild.rc ]
+then
+	if [ "$verbose" = TRUE ]
+	then
+		echo Reading $HOME/.egtkbuild.rc
+	fi
+	. $HOME/.egtkbuild.rc
+fi
+
+if [ "$DEBIAN_GTK_DEBUG" = true ]
+then
+	if [ -r /usr/lib/libgtk_g.a ]
+	then
+		GTKLIBS=`echo $GTKLIBS | sed -e 's/-lgtk /-lgtk_g /' -e 's/-lgdk /-lgdk_g /' -e 's/-lglib /-lglib_g /'`
+	fi
+fi
+
+INCFLAGS="$INCFLAGS -I. -I${EGTK}/C/se `gtk-config --cflags`"
+LIBS="$LIBS ${STATICLIB} ${GTKLIBS}"
+CECIL="$CECIL -cecil ${EGTK}/C/se/cecil.se"
+EXTERNAL="${EGTK}/C/se/eif_gtk_se.c $EXTERNAL"
+
+if [ ! -r ${STATICLIB} ]
+then
+	echo "
+${STATICLIB} does not exist;
+cd to `dirname ${STATICLIB}`
+and build it with the command 'make -f Makefile.se'"
+	exit 1
+fi
+
+if [ "$verbose" = TRUE ]
+then
+	echo $COMPILE $SE_OPTS $CECIL ${root_class}.e -o ${root_class} $DEBUG \
+	   $OPTIMISE $INCFLAGS $EXTERNAL $LIBS
+fi
+
+$COMPILE $SE_OPTS $CECIL ${root_class}.e -o ${root_class} $DEBUG $OPTIMISE \
+	$INCFLAGS $EXTERNAL $LIBS && (
+		echo -n "Generated C files to recompile : "
+		grep "gcc -pipe .* -c ${root_class}" ${root_class}.make | wc -l
+		sh -v ${root_class}.make
+	)

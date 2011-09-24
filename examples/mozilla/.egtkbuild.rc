@@ -1,0 +1,6 @@
+#!/bin/sh
+
+#SE_OPTS="-no_split -no_style_warning -case_insensitive -boost"
+SE_OPTS="-no_style_warning -case_insensitive"
+INCLFLAGS="-I/home/al/prog/tmp/mozilla/dist/include"
+LIBS="-L/home/al/prog/tmp/mozilla/dist/lib -lgtkmozilla"

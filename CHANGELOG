@@ -1,0 +1,1875 @@
+eGTK library (formerly eiffel-gtk): history of changes
+======================================================
+
+20 March 1998
+
+Started on GTK_DRAWING_AREA. 
+
+
+23 March 1998 
+
+To do the drawing area and a canvas widget properly I need to have 
+a general way to handle GDK events. Started class GDK_EVENT - all
+event classes will inherit from it and each specific junk will
+be implemented there. 
+
+The main idea is to give Eiffel the pointer to the event data
+so that the code can extract the information it needs. I don't
+think this data needs to be an attribute.
+
+
+24 March 1998 
+
+The idea is to separate GDK_EVENTs and GTK_SIGNALs. GTK_COMMAND should
+go away. I'm not sure if I should define every descendant from GTK_EVENT,
+or just let people define them. The only thing I can introduce is the
+"name", handler would still be deferred.
+
+Started on GTK_CANVAS.
+
+NOTE: things can't multiply inherit from GDK_EVENT because of the
+pointer to callback data. It would have to be renamed and the disposes
+would have to be combined to remove them all. Lists are easier.
+
+
+26 March 1998 
+
+Little more work on GTK_CANVAS - I need a simple way to extract fields
+from C structs without writing so much C functions. 
+
+I'm investigating using C macros from Eiffel.
+
+
+24 June 1998 
+
+Back again. Rebuild all the examples with GTK+-1.0.4. I need to finish
+GTK_CANVAS next and then set up the final version of GTK_SIGNAL and GDK_EVENTs.
+
+
+10 November 1998
+
+Eliminated the use of LINKED_LIST in GTK_CONTAINER. Instead I'm using
+ARRAY. This should make poritng to SmallEiffel easier.
+
+
+11 November 1998 
+
+Splitting directories into ISE and SE. I have to come up with a portable
+way to pass an address to an external routine. Will have to write
+a routine that will return address of a string.
+
+		to_pointer (s: STRING): POINTER
+
+and implement different one's for ISE and SE.
+
+
+16 November 1998
+
+Created a class GTK_NON_PORTABLE_CALLS for dumping calls to external
+routines that are not portable between compilers. Next I need to
+start to rewrite the C code for Small Eiffel.
+
+
+17 November 1998
+
+Started to write C code for SmallEiffel. The next big thing is
+callbacks. Once those are done we are home free.
+
+
+19 November 1998 
+
+Got hello2 to compile. Prepared Eiffel code for callbacks. Next have to
+write C code. GDK_EVENT and GTK_COMMAND need separate versions
+for each compiler. Created a "cecil.se" in C/se directory.
+I need to create a makefile to compiler SE classes.
+
+Question: What to do about GC? We need "dispose".
+
+
+20 November 1998 
+
+Callback for signals working. Should rewrite the C code for ISE and SE
+to have separate registration routines for signals and events.
+
+Set up make files to compile and link examples in SE.
+
+
+24 November 1998
+
+In the cecil.se I can reference a deferred routine and the right
+routine will be called by the callback. I have to check if
+I should be using "visible" with ISE.
+
+Setting Makefiles for compiling SE systems seems stupid, yet
+I need something to make compiling and linking of these gtk
+examples easier. Maybe a bin directory with some scripts:
+"compile_with_gtk" and so on.
+
+Got the QUIT_COMMAND to work and packing exmaple to work. But signals
+and events need to be split better. Separate C code is needed
+and GTK_COMMAND should not be used for setting up event handlers.
+Perhaps a pre-condition is needed....
+
+
+26 November 1998
+
+Pixmap example working. Problem with GTK_ENTRY. Is it a bug in SmallEiffel?
+A renamed feature gives an error when trying to compile READ_ENTRY_CMD.
+Maybe a small example can show the problem?
+
+
+30 November 1998
+
+Another problem with SE. Don't seem to be able to change export
+status in a descendant. Problem with GTK_TOOLBAR and GTK_TOOLBAR_COMMAND.
+Fixed up export in GT_WIDGET for now. Still have to write C code
+for the callback.
+
+How to get from C string to SmallEiffel STRING? s.from_external (p) !
+
+Got SE compilation to work. Next have to add externals.
+
+Also fixed up ISE compilations, so that both now compile.
+
+
+1 December 1998
+
+Added C code for doing toolbar callbacks, but I'm running into
+a weird problem with SE. It seems to forget to generate a routine
+for GTK_TOOLBAR_COMMAND.handle_call_back and the system doesn't
+link. If I comment out the parts that use the toolbar stuff then
+everything works OK.
+
+I'm using SE-0.79b7.
+
+
+2 December 1998 
+
+Still no clue why GTK_TOOL_COMMAND fails to link. I tried
+to reproduce with a small example and failed. The example
+works fine. Ugh!
+
+
+6 December 1998 
+
+Tried to create a small example with GTK_TOOL_COMMAND to
+show the above problem, but I ran into another problem.
+SmallEiffel generate bogus C code that fails to compile.
+
+
+14 December 1998 
+
+May have to create a separate class for incoming call backs
+in SE, and then dispatch them to the right class.
+
+
+27 December 1998
+
+Fixed a stupid bug in test_gtk.e. "parse_rc' was called before
+the toolkit was initialized so it SEGVed. Moved the code around
+and now it works.
+
+Changed some code to get rid of SmallEiffel warnings. Started
+to use SmallEiffel-0.79 with a patch published on SE mailing
+list (see README in gtk/examples/toolbar.
+
+
+29 December 1998
+
+Almost done with GTK_DIALOG. I have to finish the part in test_gtk
+to work nicer and then do the SE part.
+
+
+1 January 1999
+
+Finished GTK_DIALOG. Converted to SE.
+
+
+18 January 1999
+
+Adapted GTK_NOTEBOOK from Jörgen Tegne´r. Now I'm starting on
+adding a test routine for test_gtk. I'm not sure how to handle
+children widgets of a GTK_NOTEBOOK. 
+
+I think a GTK_NOTEBOOK_PAGE class is needed.
+
+
+19 January 1999
+
+Got basic GTK_NOTEBOOK test working. Next I want to add pixmaps for
+labels and some of the buttons that manipulate the notebook.
+
+
+20 January 1999
+
+Completed a GTK_NOTEBOOK example and ported to SmallEiffel. Now
+I need to integrate into the CVS.
+
+
+21 January 1999
+
+Take a look at "gtk_widget_show_all". The stupid manipulation
+of children array may not be needed at all. Grrrr...
+
+
+9 February 1999
+
+Added "show_all" to GTK_WIDGET.
+
+Switched to GTK+ 1.1.14. Bunch of updates were needed to new names
+of externals. Tested code with ISE - OK.
+
+
+10 February 1999
+
+Started on GTK_FILE_SELECTION widget. Got basic file selector working,
+now I'm not sure how to handle with the OK and CANCEL buttons.
+Should the routines to handle these be built into the selector,
+or should I have a descendant class that implements the obvious
+routines?
+
+How about modal dialogs? I'd like to write code like this:
+
+		1. do stuff...
+		2. pop_up_a_dialog
+		3. after it's been answered get
+	       the answer and continue
+
+I have to deal with collection as well. I need to redefine dispose
+for ISE to destroy the widgets.
+
+
+12 February 1999
+
+Ported GTK_FILE_SELECTION to SmallEiffel. Realized that most of 
+GTK_EXTERNAL is the same for SE and ISE, so I put the non-portable
+externals in GTK_NON_PORTABLE_CALLS and moved GTK_EXTERNALS up
+to the common directory.
+
+Published version 0.3.1.
+
+
+13 February 1999
+
+Started to compile niwie with my libs so I had to add MENU code.
+Still more work to be done.
+
+
+15 February 1999
+
+More hacking to try and compile Niwie. Here are some observations:
+
+	- GLIST etc in the other lib keep pointers to Eiffel objects.
+	this will not work with ISE, 'cause the collector moves
+	objectss around.
+	- I'm sort of stuck on difference in style of GTK_COMMAND
+
+Paul Jenzen send me a fix for the SmallEiffel problem. I should try
+that next and see if it fixes it. Probably I should finish up
+the menus example next, before going back to niwie.
+
+
+17 February 1999 
+
+Applied Paul's fix. Now toolbars work with SmallEiffel.
+
+
+20 February 1999
+
+Writing a menu example. Decided to split externals into separate
+files.
+
+
+21 February 1999
+
+More on the menu example. The code for doing the button click is
+different than the C example, because I don't have GDK events done
+yet. I think I'll have to skip this for now, until I sort out the callbacks.
+
+
+7 March 1999 - richieb (richieb@netlabs.net)
+
+Compiled with GTK+ 1.2.0. Made menu example work with SmallEiffel.
+
+
+22 March 1999 - richieb (richieb@netlabs.net)
+
+Compiled with SE-0.78b2. Added Makefiles from Andreas Leitner for all
+the SmallEiffel examples. Integrated Dave Martin's changes for GTK_CANVAS.
+
+Hmm. Pixmap example is not longer working with SE. Testgtk toolbar code
+crashes now with ISE and SE.
+
+
+1 April 1999 - richieb (richieb@netlabs.net)
+
+Fix the problems from above. They we silly bugs.
+
+
+7 April 1999 - richieb (richieb@netlabs.net)
+
+Small integration with all the new code. Added Makefiles for all SE
+examples (contributed by Andreas Leitner). Now using ISE 4.3 and
+SE 0.78b2.
+
+
+8 April 1999 - xxiii (xxiii@cyberdude.com)
+
+add missing event routine in SmallEiffel specific code
+start on gdk_constants class (not to be confused with gtk_constants)
+  many still need to be added
+add some boolean queries to gtk_widget (but still incomplete) 
+add flags query to gtk_object
+add set/add_event_mask code gtk_widget (curious as to why
+  (in the C GTK library) its associated with widgets and not windows
+  as it seems to be window specific)
+add a find parent window query to gtk_widget
+add C glue code where necessary to support all of the above
+modified image-scribble-sample.  It now works in a very rudimentary way; a dot
+  will be plotted whereever you click (with any button, or at least the 3
+  "normal" buttons) *BUT* you must obsure and re-expose the window to actually
+  see the resulting dots.  (its 2:57 am here, thats all you get for now 8)
+
+
+9 April 1999 - xxiii (xxiii@cyberdude.com)
+correct the event routine in SmallEiffel specific code to call the correct
+  cecil function, with the correct arguments.  image-scribble-sample should
+  now work in SmallEiffel as well (according to the description in the above
+  entry)
+
+
+11 April 1999 - richieb (richieb@netlabs.net)
+
+Revamped the gtk_container hierarchy. Added GTK_BIN and GTK_COMPOSED_BIN
+- parents of containers with only one or with many children.
+
+
+17 April 1999 - richieb (richieb@netlabs.net)
+
+Added EIFFEL_GTK env var to all Ace files.
+
+Added GTK_COMMAND_TYPE. All callback COMMAND objects will be descendants
+of this class eventually. Modified GTK_OBJECT so that now we add callback
+commands via object.add_action call on the widget, rather than
+action.connect call on the command. I'm enforcing the restiction of
+one command object per callback. 
+
+
+25 April 1999 - richieb (richieb@netlabs.net)
+
+Modified C code to add a marshalling function to get all the callbacks.
+Setting up a infrastructure for getting and processing GDK_EVENTS.
+
+
+25 April 1999 - xxiii (xxiii@cyberdude.com)
+Added gdk_flush to GDK_EXTERNALS
+
+
+27 April 1999 - richieb (richieb@netlabs.net)
+
+Fixing callbacks up with GDK_EVENT_COMMAND and GTK_COMMAND_TYPE.
+Added a better name for "find_containing_window" - mainly "containg_window".
+
+
+26 April 1999 - xxiii (xxiii@cyberdude.com)
+
+fix numerous mis-spelled calls in gdk_motion_event
+add button_press/release event classes, GDK_BUTTON_EVENT is now an
+	intermediate class for the other button_event classes
+add some minor documentation comments
+
+
+27 April 1999 - xxiii (xxiii@cyberdude.com)
+
+Added a gdk_object hierarchy; added gdk_drawable; altered some
+other classes to utilize gdk_drawable; added more gdk_external
+features.  Added a gtk_compiler_adapter class to the compiler-
+specific directories, to mask some compiler differences.
+Not everything has been tested, but everything seems to compile
+ok (at least with ISE).  A test example for gdk_drawable needs to be
+written.
+
+
+28 April 1999 - xxiii (xxiii@cyberdude.com)
+
+add GDK_GC_VALUES, GDK_FUNCTION_VALUE, add more feature support to
+GDK_GC, modify GDK_STYLE to deal with changes in GDK_GC,
+add related glue code to se/ise/gtk_eiffel.c and gdk_externals.e
+
+
+29 April 1999 - richieb (richieb@netlabs.net)
+
+In GDK_OBJECT changed the invariant to compare the pointer against
+"default_pointer". POINTER types are expanded so testing against
+Void will always return true.
+
+Added ANY to the inheritance clause of GDK_OBJECT. Made GDK_EVENT
+inherit GDK_OBJECT.
+
+Fixed up some formatting here and there.
+
+Changes to fix SmallEiffel callbacks. Almost working, except that
+testgtk doesn't compile with -0.78b4 because of SE bugs. Renaming
+problems.
+
+
+30 April 1999 - xxiii (xxiii@cyberdude.com)
+fixed a Void/default_pointer issue in gtk_object
+updated/added gdk_xxx_command and gdk_xxx_event classes to work
+with the new event paradigm, more forthcoming later.
+removed gdk_button_press_event class whose functionality has been absorbed
+into gdk_button_event and gdk_button_press_command
+
+
+1 May 1999 - richieb (richieb@netlabs.net)
+
+Fixed SE compile/short errors for GTK_CANVAS. It's not really used for anything
+just yet, but when Oliver E. makes documentation it messes up "short".
+
+
+2 May 1999 - richieb (richieb@netlabs.net)
+
+Started to bring GTK_TOOLBAR and GTK_TOOLBAR_COMMAND into the new scheme
+of callbacks. Toolback callbacks now go though the marshalling function
+(in the ISE version only), but the Eiffel code still has to change.
+
+
+3 May 1999 - richieb (richieb@netlabs.net)
+
+Changed GTK_TOOLBAR to inherit from GTK_COMPOSED_BIN. Changing code
+to get rid of GTK_TOOLBAR_COMMAND.
+
+
+7 May 1999 - richieb (richieb@netlabs.net)
+
+Further changes to GTK_TOOLBAR. The example from testgtk now works
+with GTK_COMMAND objects. I have to make it portable to SE and I'm
+done with new toolbar. GTK_TOOLBAR_COMMAND class is now obsolote.
+
+
+8 May 1999 - richieb (richieb@netlabs.net)
+
+Removed postcondition from GTK_WIDGET.set_size. The size doesn't actually
+change until the widget is show, so the postcondition is false.
+
+In SE/gtk_eiffel.c started to remove references to GTK_TOOLBAR_COMMAND.
+
+In Scribble example changed to use GDK_EVENT and GDK_EVENT_COMMAND. Code
+runs but nothing shows on in the window, although callbacks get where
+they were going.
+
+The new and improved GTK_TOOLBAR now works with SmallEiffel too.
+
+
+13 May 1999 - xxiii (xxiii@cyberdude.com)
+This ones a dewsy:
+
+added: GTK_RANGE, GTK_SCALE, GTK_HSCALE, GTK_VSCALE, GTK_EXTERNALS_RANGE,
+       GTK_DATA, GTK_UPDATE_VALUE, GTK_POSITION_VALUE, GTK_DESTROY_COMMAND,
+		 GTK_UTILITY, GTK_SCROLLBAR   implemented
+
+modified (really added): GTK_HSCROLLBAR, GTK_VSCROLLBAR, GTK_ADJUSTMENT
+                         implemented (these were marked TODO)
+
+modified: GDK_DRAWABLE  moved bool_to_int to GTK_UTILITY
+modified: GDK_FUNCTION_VALUE.e added documentation
+modified: GDK_GC make argument to set_function expanded (passing a non-expanded
+          to an expanded results in a clone, rather than an in-place reference
+          being generated).
+
+modified: GDK_GC_VALUES added TODO comment in a relevent place, make
+          set_function argument expanded
+
+modified: GTK_EXTERNALS add (lots) more glue code
+
+added: examples/range_widgets example, which is currently a partial
+       implementation of the C example rangewidgets.
+       It will build and run with both ISE 4.3 and SmallEiffel -0.78b5
+
+
+13 May 1999 - richieb (richieb@netlabs.net)
+
+Started to work on GTK_LIST widget. Small test working in
+testgtk. Need to add callbacks, selection options and 
+then adapt to SE.
+
+
+14 May 1999 - richieb (richieb@netlabs.net)
+
+More on GTK_LIST. Got an example working with selection, but selection
+needs more work.
+
+Added "text" to GTK_LABEL and "focus_child" to GTK_CONTAINER. Still
+have to add a way to  retrieve the "child" widget from GTK_BIN, in cases
+where it wasn't created in Eiffel...
+
+
+16 May 1999 - richieb (richieb@netlabs.net)
+
+Fixed up SE part of the GTK_LIST. Still need to work more on list
+callbacks, but the basic stuff works.
+
+
+22 May 1999 - richieb (richieb@netlabs.net)
+
+Extending memu example. Adding more stuff to handle gdk_events.
+
+
+23 May 1999 - richieb (richieb@netlabs.net)
+
+Got the extended menu to work. Started GDK_EVENT_FACTORY class.
+Now I need to add C code for returning a value from a callback.
+
+
+25 May 1999 - richieb (richieb@netlabs.net)
+
+Added C code to return values from EVENT handlers.
+
+
+27 May 1999 - richieb (richieb@netlabs.net)
+
+Cleaned up the C code for returning values from event handlers.
+
+
+29 May 1999 - richieb (richieb@netlabs.net)
+
+Fixed up the Ace file for scribble app. Commented out some C-code
+for setting and getting text from button widgets. The code was
+not entirely correct.
+
+
+31 May 1999 - xxiii (xxiii@cyberdude.com)
+forgot to make a changelog entry from several days ago mentioning updates
+to the image-scribble-simple example.  It now updates immedately.  You hold
+down a mouse button and move it around, and it draws dots.  The initial dot
+is a different color.
+The change which actually occurred today was modifying the example to not
+try to draw lines when anything besides button one was last pressed, due to
+an error in the images classes concerning their belief that they are drawables
+when they are not.
+
+
+1 June 1999 - richieb (richieb@entlabs.net)
+
+Changed all the "version:" tags in indexing to be v0.3.2.
+
+In GTK_BUTTON.make_with_label add a show to force show of label. Otherwise
+it deosn't appear always.
+
+Fixed "build" script. I had to comment out the stuff about Postgresql etc.
+It's not relevant and it didn't work right on my machine.
+
+In GTK_LABEL removed the call to ".to_external". It's not portable to
+ISE. Use "np_string_from_pointer".
+
+GTK_PIXMAP fixed find_xpm to be portable to ISE.
+
+GTK_RADIO_BUTTON removed the preconditon on make_with_label. It's
+inherited from parent.
+
+
+11 June 1999 xxiii
+THE GRAND REORGANIZATION.
+reorganize directories.
+If this is the last entry of the CHANGELOG that you see, you have old code.
+Please checkout the module eGTK to get the newer versions.
+
+
+11 June 1999 xxiii
+THE GRAND REORGANIZATION, PART II
+This is the new code tree.  The old code and history is available in the module gtk.
+        eGTK
+                /lib/gtk <-- classes that correspond to gtk objects
+
+                /lib/gtk/ise  <-- ise specific classes
+                /lib/gtk/se   <-- se specific
+
+                /lib/gdk <-- classes that go with gdk objects
+                /lib/gdk/ise
+                /lib/gdk/se
+
+                /lib/egtk <-- classes that are higher level combinations
+                                without direct correspondents to C code
+                                (these should be compiler independent)
+
+                /lib/C   <-- Common C code
+                /lib/C/ise <-- ISE C code
+                /lib/C/se  <-- SE C code
+
+                /bin <-- useful scripts
+                /pixmaps <-- for pixmaps needed by the examples
+                /html <-- docs
+
+                /examples
+
+	from old tree:
+.
+./C
+./C/ise
+./C/se
+./bin
+./examples
+./examples/hello
+./examples/image-scribble-simple
+./examples/menu
+./examples/packing
+./examples/pixmap
+./examples/range_widgets
+./examples/testgtk
+./examples/toolbar
+./html
+./lib
+./lib/ise
+./lib/se
+./pixmaps
+    
+
+15th June 1999 - richieb (richieb@netlabs.net)
+
+Fixed all the Ace files and loadpath.se files to account for the
+new directory layout.
+
+
+19th June 1999 - Oliver Elphick <olly@lfix.co.uk>
+  - Created new class GTK_EDITABLE to map the equivalent GTK class.
+  - Made GTK_ENTRY inherit from new class GTK_EDITABLE and moved a number
+    of features up into the ancestor class; added features set_max_length,
+    set_insertion_point. Added some more feature comments.
+  - Implemented GTK_TEXT, inheriting from GTK_EDITABLE.
+  - Implemented GTK_FIXED.
+  - Added supporting features for the above changes to GTK_EXTERNALS.
+  - Added supporting features to GTK_NON_PORTABLE_CALLS (both ise and se
+    versions).
+  - Added GtkText adjustment routines to lib/C/{ise,se}/gtk_eiffel.c (these
+    should go into common C code when gtk_eiffel.c is split).
+  - Some prettifying of class files and correction of spelling.
+  - examples/fixed_text, showing a text widget and an entry widget in a
+    fixed widget.
+  - Added pre- and postconditions and invariants.
+  - Altered all dates in this CHANGELOG to use month names.
+  - New command egtkbuild to replace build.
+
+
+21th June 1999 - richieb (richieb@netlabs.net)
+
+Move "is_my_child" up to GTK_CONTAINER. Move the assertion for
+remove GTK_CONTAINER.remove_widget. Added "ensure then" in
+redefined postconditions. SmallEiffel doesn't seem to catch
+this.
+
+Same thing for GTK_EDITABLE and GTK_TEXT.
+
+
+22nd June 1999 - richieb (richieb@netlabs.net)
+
+Started to clean up C code. First I'm eliminating all unused
+routines. While testing found a bug in GTK_WIDGET.destroy.
+It set the "widget" pointer to zero, which invalidates the
+invariant for widgets. For now I commented this out.
+
+In GTK_PIXMAP removed restricted export of attribute widget. It
+wasn't needed and SE did not compile it.
+
+
+28th June 1999 - Oliver Elphick <olly@lfix.co.uk>
+
+Committed lib/gtk/externals directory, to implement (almost) all the
+public features of GTK+ gtk/*.h.  So far, these new classes are not
+connected to the rest of the library.
+
+
+5th July 1999 - richieb (richieb@netlabs.net)
+
+Revised C files into the new layout:
+
+	C/se  -- SE specific
+	C/ise -- ISE specific
+	C	  - common to both
+
+Modified the egtkbuild script to use the new C files and libs.
+
+Started to modify makefiles and Ace files for the examples
+(so far done "hello" and "image").
+
+Makefile for "fixed_test" fails and I don't know why.
+
+Added a "is_child" routine to GTK_COMPOSED_BIN. Otherwise GTK_FIXED
+did not compile with ISE.
+
+Added "gtk_fixed_move" to GTK_EXTERNALS (temporarily).
+
+In GTK_EDITABLE has to comment out an ensure after "set_inerstion_point".
+"insertion_point" attribute/function does not exist.
+
+
+10th July 1999 - Oliver Elphick <olly@lfix.co.uk>
+
+Removed set_insertion_point from GTK_EDITABLE and moved it to GTK_TEXT
+(because it is not supported in GTK_ENTRY).
+
+Corrected a spelling error that was causing make to fail in the
+fixed_text example.
+
+Added an EXTERNAL variable to egtkbuild to allow external .c and .o
+files to be added.
+
+Updated the man page for egtkbuild.
+
+Altered the inheritance of EXTERNALS by GTK_APPLICATION to
+GTK_MAIN_EXTERNALS and GTK_RC_EXTERNALS.
+
+
+10th July 1999 - richieb (richieb@netlabs.net)
+
+Some fixes for syntax errors that SE did not catch.
+
+Added a EGTK_NON_PORTABLE class. This class contain one
+attribute ("npc") which gives access to non-portable external
+calls. This prevents name pollution of classes that need
+few non-portable calls.
+
+Added "c_gtk_init_tool_kit" to GTK_MAIN_EXTERNALS. This is an
+Eiffel specific call. Maybe is should be in some other class?
+
+Started to convert to new external files. So far modified the
+GTK_MENU_xxx classes.
+
+
+11th July 1999 - richieb (richieb@netlabs.net)
+
+Moved calls from "gtk/externals/gtk_externals.e" to their respective
+classes. This class is no longer needed.
+
+Modifying code to use new external classes. 
+
+
+12th July 1999 - richieb (richieb@netlabs.net)
+
+More on externals. Changed ISE version of test_gtk not
+to use GTK_EXTERNALS anymore.
+
+
+13th July 1999 - richieb (richieb@netlabs.net)
+
+Two more examples switched to new externals: hello and fixed_text
+
+
+15th July 1999 - richieb (richieb@netlabs.net)
+
+Removed GTK_TOOLBAR_COMMAND class. It was obsolete. Changed all
+the code to use new external files. ISE and SE.
+
+
+7th August 1999  - Oliver Elphick <olly@lfix.co.uk>
+
+Many corrections to lib/gtk/externals/* classes, mostly syntax errors
+or remains of C-code from the gtk+ *.h files.  Changed some features
+that have been renamed in GTK+ 1.2.3.
+
+Commented out active lines in gtk/ise/compiler_adapter.e (which fail
+with ISE compiler).
+
+Changed occurrences of `CVS:' to `cvs:' in all indexing clauses.
+
+Added top-level Makefile to examples/
+
+Small alteration to bin/egtkbuild and man/egtkbuild.1
+
+Changed examples/hello/Ace.ace to use gtk-config rather than hard-coded
+libraries.
+
+Altered all examples/*/Makefile to stop their aborting if a file to be
+cleaned does not exist.
+
+Added lib/Ace.ace to allow precompilation of the entire library.
+
+Altered lib/egtk/egtk_message*.e to make them work with ISE compiler (they
+used !!string.make_from_string("..."), which ISE's STRING does not allow
+for creation.)
+
+Added an empty connect_handler feature to lib/gtk/gtk_canvas_configure_event.e
+to enable it to compile (and labelled the class obsolete).
+
+GTK_DRAWING_AREA now inherits from GTK_DRAWING_AREA_EXTERNALS.
+
+The whole tree now compiles with `es4 -precompile' and runs through
+SmallEiffel's short without complaint.
+
+
+11th August 1999 - richieb (richieb@netlabs.net)
+
+Integrated GTK_TREE widget plus example contributed by Pirmin Kalberer.
+
+
+13th August, 1999 - richieb (richieb@netlabs.net)
+
+Made GTK_OBJECT and GDK_OBJECT inherit from IDENTIFIED, so that
+I can use object_ids to establish a one-to-one correspondence between
+gtk widgets and Eiffel objects.
+
+Started EGTK_WIDGET_FACTORY class which will maintain this correspondence.
+
+
+14th August, 1999 - richieb (richieb@netlabs.net)
+
+Added handling of registering object IDs with widget pointers. Working
+out the bugs.
+
+There is a problem with the hash_table implementation. It's simpler
+to attach the eiffel object_id to the widget using gtk_object_set_data
+and gtk_object_get_data.
+
+I'm not sure what to do about GDK items yet.
+
+
+16th August, 1999 - richieb (richieb@netlabs.net)
+
+Revised the registering code with gtk_object_set_data and gtk_object_get_data.
+Retested all of test_gtk. Next have to check all the other examples
+and then add the SmallEiffel part.
+
+
+20th August, 1999 - richieb (richieb@netlabs.net)
+
+Changed IDENTIFIED to GTK_IDENTIFIED to avoid name conflict on "object_id/id_object"
+in SE.
+
+
+22nd August, 1999 - richieb (richieb@netlabs.net)
+
+GTK_IDENTIFIED update. Code works fine with SE and ISE.
+
+
+27th August 1999  - Oliver Elphick <olly@lfix.co.uk>
+
+Added GTK_CLIST, GTK_COMBO and GTK_BUTTON_BOX classes (the latter two thanks
+to Daniel Elphick, who implemented them as a by-product of creating eglade).
+
+Supporting changes to C files, GTK_NON_PORTABLE_CALLS,
+GTK_BUTTON_BOX_EXTERNALS, GTK_CLIST_EXTERNALS, GTK_COMBO_EXTERNALS.
+
+Improvements to C/se/Makefile.se and egtkbuild.
+
+Updated some classes which inherit indirectly from GTK_IDENTIFIED:
+  EGTK_MESSAGE, GTK_CANVAS, GTK_CHECK_MENU_ITEM, GTK_DRAWING_AREA_EXTERNALS
+
+GTK_BUTTON: added creation feature, make_with_pixmap.
+
+GTK_ENTRY: added make_from_pointer to list of creation features
+
+GTK_LIST: added make_from_pointer to list of creation features
+
+Changed inheritors of GTK_EXTERNALS_* to use GTK_*_EXTERNALS; added
+obsolete clause to GTK_EXTERNALS_* clauses (but I don't think any of them
+are used now).
+
+Split off some constants that are referenced by more than one class into
+separate *_ENUM classes in externals.  (When the whole process of implementing
+the external calls is complete, it may be better to merge all these into
+a general constants file, but for now I prefer to keep them separate.)
+
+Added preconditions to *EXTERNALS classes where enumerated constants
+dictate a limited range for parameters.
+
+
+30th August 1999  - Oliver Elphick <olly@lfix.co.uk>
+
+Added classes from Daniel Elphick - GTK_HADLE_BOX, GTK_STATUS_BAR,
+GTK_OPTION_MENU with supporting features in GTK_NON_PORTABLE_CALLS.
+
+Added make_from_pointer as a creation routine in GTK_MENU, removed
+unneeded pointer attribute from GTK_COMBO.
+
+
+1st September 1999  - Daniel Elphick <de397@ecs.soton.ac.uk>
+
+Added register_widget calls to creation features of GTK_CHECK_MENU_ITEM and
+GTK_RADIO_MENU_ITEM
+
+
+31 August 1999 - richieb (richieb@netlabs.net)
+
+Small fix to GTK_NON_PORTABLE_CALLS for ISE - compile error.
+
+Added a test of GTK_COLORSEL to testgtk, but it's not working yet.
+
+
+September 7th, 1999 - richieb (richieb@netlabs.net)
+
+Added a GTK_COLOR_SELECTION_DIALOG along with an example in 
+testgtk.
+
+
+September 8th, 1999 - Daniel Elphick <de397@ecs.soton.ac.uk>
+
+Added GTK_ARROW, GTK_PANED, GTK_SPIN_BUTTON, GTK_ALIGNMENT, GTK_EVENT_BOX,
+GTK_PROGRESS, GTK_PROGRESS_BAR, GTK_MISC, GTK_ACCEL_LABEL, GTK_HPANED and
+GTK_VPANED
+
+Added supporting features in eif_gtk.c and GTK_NON_PORTABLE_CALLS
+Added register_widget call to make of gtk_drawing_area
+Changed description of GTK_HANDLE_BOX
+
+Made GTK_LABEL, GTK_IMAGE, GTK_PIXMAP inherit from GTK_MISC which provides
+set_alignment and set_padding.
+
+Altered GTK_LABEL so that it uses the gtk_label_set_justify calls as well as
+adding fill.
+
+Altered GTK_NOTEBOOK so that pages are GTK_WIDGETs rather than GTK_CONTAINERs
+
+Altered GTK_WIDGET, so that set_size and set_position can take parameters >=-2
+which allows for example setting the width without the height.
+
+
+September 8th, 1999 - Daniel Elphick <de397@ecs.soton.ac.uk>
+
+Added GTK_FONTSEL and supporting features in GTK_NON_PORTABLE_CALLS
+
+
+September 9th, 1999 - Oliver Elphick <olly@lfix.co.uk>
+
+Minor bugfixes and added missing features to ise/gtk_non_portable_calls.e.
+All compiles with ISE now.
+
+
+Septempber 12th, 1999 - Daniel Elphick <de397@ecs.soton.ac.uk>
+
+Added GTK_FONT_SELECTION_DIALOG and supporting features in se/GTK_NON_PORTABLE
+Also fixed bug in se / ise GTK_NON_PORTABLE_CALLS relating to GTK_FONTSEL
+
+
+September 13th, 1999 - Daniel Elphick <de397@ecs.soton.ac.uk>
+
+Added GTK_RULER, GTK_HRULER and GTK_VRULER
+Added GTK_PACKER
+Added GTK_ASPECT_FRAME
+Added GTK_CURVE and GTK_GAMMA_CURVE
+Added GTK_PREVIEW, GTK_PREVIEW_INFO, GDK_COLOR_MAP
+
+
+September 20th, 1999 - richieb (richieb@netlabs.net)
+
+Some fixes to make sure the stuff compiles under ISE.
+There are portability problems with GTK_FONT_SELECTOR stuff.
+The code will not work with ISE.
+
+
+September 21st, 1999 - Daniel Elphick <de397@ecs.soton.ac.uk>
+
+Fixed above problems which were due to changing the se code but forgetting about
+ise
+
+
+September 24th, 1999 - richieb (richieb@netlabs.net)
+
+Added GTK_GAMMA_CURVER example in test_gtk. 
+
+
+September 27th, 1999 - richieb (richieb@netlabs.net)
+
+Extended the EGTK_WIDGET_FACTORY class to create Eiffel objects as needed.
+The code is not yet complete, all types of widgets should be added.
+Not tested SmallEiffel yet.
+
+
+September 29th, 1999 - richieb (richieb@netlabs.net)
+
+Added a reverse assigment in GTK_BIN.make_from_pointer.
+Otherwise SmallEiffel complained about the possible
+type problem in GTK_LIST_ITEM. ISE did not report the
+error.
+
+
+October 2nd, 1999 - richieb (richieb@netlabs.net)
+
+Removed the GDK_DRAWABLE as parent of GDK_IMAGE.
+
+Changed version to 0.3.3 for the next snapshot release.
+
+Removed "toolbar" example. It wasn't working anyway.
+
+
+October 15th, 1999 - richieb (richieb@netlabs.net)
+
+Two bug fixes in the GTK_IDENTIFIED code. In one place
+I used "object_id" instead of "gtk_object_id". 
+
+The other problem was in the eif_identified.c. The code
+failed on an Alpha. I assumed (!!!) that pointers were
+four bytes. Shame on me!
+
+I also integrated more changes to GTK_NOTEBOOK from
+Jörgen Tegne´r. Thanks!
+
+
+October 20th, 1999 - Oliver Elphick <olly@lfix.co.uk>
+
+Tidying - changed all occurrences of eiffel-gtk and EIFFEL_GTK to eGTK or
+EGTK as appropriate.
+
+
+October 28th, 1999 - Oliver Elphick <olly@lfix.co.uk>
+
+GTK_SCROLLED_WINDOW no longer inherits from the obsolete GTK_CONSTANTS.
+GTK_SCROLLED_WINDOW_EXTERNALS inherits from the new class GTK_POLICY_TYPE_ENUM
+which now includes the constant Gtk_policy_never, and set_policy in
+GTK_SCROLLED_WINDOW now allows that policy.
+
+Added the features realize and unrealize to GTK_WIDGET.
+
+November 12th, 1999 - richieb (richieb@netlabs.net)
+
+Got rid of the old Makefile in eGTK/C/se directory and renamed
+the Makefile.se to be Makefile. 
+
+Fixed small bug in GTK_BUTTON.set_pixmap. It should have called "add_widget",
+not "add_child".
+
+
+November 16th, 1999 - Oliver Elphick <olly@lfix.co.uk>
+
+Fixed bug in GTK_TOGGLE_BUTTON, where the sense of set_state_down and
+set_state_up were reversed!  Down = active, up = inactive!
+
+
+November 22nd, 1999 - richieb (richieb@netlabs.net)
+
+Fixed bug in GTK_BIN and GTK_CONMOSED_BIN. "remove_widget" did
+not call the appropriate C function.
+
+Changed GTK_STATUS_BAR.pop not to be a function.
+
+Modified GTK_DIALOG to use the widget factory.
+
+
+November 23rd, 1999 - richieb (richieb@netlabs.net)
+
+Added a better GDK_PIXMAP class that can be used to create images
+from xpm files. Still need to add way to create images from
+inline data.
+
+
+November 24rd, 1999 - richieb (richieb@netlabs.net)
+
+Little more work on GDK_PIXMAP. Added assertion and inheritance
+from GDK_DRAWABLE.
+
+
+November 25th, 1999 - Oliver Elphick <olly@lfix.co.uk>
+
+Changed RELEASE to contain the current release number (0.3.3) plus a 
+note about additions in current cvs.
+
+Added an EGTK_MESSAGE_HANDLING class, that can be inherited by any
+class to display messages; if the GUI has not yet been initialised, it
+will print to stdout.
+
+Changed egtkbuild to use compile_to_c and then display the number of
+generated C files to recompile.  This reduces the user's tendency to
+feel that the compilation has got stuck in a dead loop!
+
+
+November 26th, richieb (richieb@netlabs.net)
+
+Changed GTK_BIN.make_from_pointer not to use "?=", to avoid
+warnings from SmallEiffel. I also had to modify GTK_LIST_ITEM
+to redefine "make_from_pointer" properly, because this is the one
+case that "?=" is needed.
+
+November 27th, richieb (richieb@netlabs.net)
+
+Updated GTK_STYLE so that we can get the colors for creation
+of GDK_PIXMAPs.
+
+November 28th, richieb (richieb@netlabs.net)
+
+Added the "tictactoe" example.
+
+
+November 30th, 1999 - Oliver Elphick <olly@lfix.co.uk>
+
+Removed GtkSelectionMode contants from GTK_CONSTANTS; they are in a
+separate enum file.
+
+Added many new features of GTK_LIST, which previously was not fully
+implemented.
+
+Set the precondition of GTK_MENU set_active
+
+Edited comments in EGTK_MESSAGE_HANDLING, GTK_LIST_ITEM
+
+
+November 30th, 1999 - richieb (richieb@netlabs.net)
+
+Got tic-tac-toe to work with SmallEiffel. 
+
+
+December 3rd, 1999  - richieb (richieb@netlabs.net)
+
+Fixed small bug GTK_BIN.remove_widget. Parent of removed
+widget wasn't set to Void. Modified pixmap example to show
+how the button pixmap can be changed when you click on the
+button.
+
+December 4th, 1999  - richieb (richieb@netlabs.net)
+
+I'm hitting a strange bug in "reparent" code. For some
+reason widget becomes unregistered and I get an invariant
+violation (see "test_gtk" example). I'm wondering of Gtk+
+deletes the widget if it is removed from it's parent widget.
+
+
+December 7th, 1999  - richieb (richieb@netlabs.net)
+
+Fixed the bug in re-parent. The problem was that once a widget is
+removed from a container it is released by GTK, so it can no longer
+be used.
+
+Split the "remove_widget" into "remove_widget" and "remove_child" to
+mirror "add_widget/add_child". The "widget" routine handles GTK stuff,
+the "add" Eiffel. Refactored some of the add/remove code into
+GTK_CONTAINER.
+
+Added "valid_object" and "valid_widget" routines to test if pointers
+refer to good widgets.
+
+December 8th, 1999 - richieb (richieb@netlabs.net)
+
+In examples/tree changed the CLOSE_COMMAND to quit application.
+
+December 12th, 1999 - richieb (richieb@netlabs.net)
+
+Changed GTK_CONTAINER to use anchors in declarations of add_widget/child
+and remove_widget/child routines. This is to keep SE/short tool happy.
+
+December 22nd, 1999 - richieb (richieb@netlabs.net)
+
+Added GDK_KEY_EVENT for keypress events. I'm factoring some stuff
+from the other GDK_EVENT_xxxx classes up to GDK_EVENT.
+
+
+January 11, 2000 - richieb (richieb@netlabs.net)
+
+More on events. Wrote GDK_CONFIGURE_EVENT, not yet tested.
+Renaming GDK_EVENT classes to have names conformant with VEGTK.
+
+January 13, 2000 - richieb (richieb@netlabs.net)
+
+Added GDK_RECTANGLE needed by GDK_EXPOSE_EVENT. Completed code
+for GDK_EXPOSE_EVENT. Not tested.
+
+Split C code into eif_gtk.c and eif_gdk.c. Fixing make files etc..
+
+January 14th, 2000 richieb (richieb@netlabs.net)
+
+Added GTK_MAIN class. GTK_APPLICATION inherits from it.
+
+January 17th, 2000 richieb (richieb@netlabs.net)
+
+Added GTK_FUNCITON (for ISE so far) to handle other kinds of GTK
+callbacks. Implemented quit, timeout and idle functions.
+
+January 18th, 2000 - richieb (richieb@netlabs.net)
+
+Debugging timeout/idle and quit functions for SE.
+
+January 20th, 2000 - richieb (richieb@netlabs.net)
+
+Wrote code for GDK_INPUT_FUNCTION. Only ISE version so far.
+It compiles, but I haven't tested it at all.
+
+January 21st, 2000 - richieb (richieb@netlabs.net)
+
+Added GDK_INPUT_FUNCTION for SE. Code compiles, but hasn't been tested.
+
+I think I'll have to make small change to the way these are implemented
+in SE in order to avoid naming deferred features in cecil.se file.
+
+January 22dn, 2000 - richieb (richieb@netlabs.net)
+
+In order to avoid warning messages from SE, I made the classes
+GTK_FUNCTION and GDK_INPUT_FUNCTION non-deferred.
+
+Fixed a bug in post-condition in GTK_CONTAINER,remove_child.
+
+January 31st, 2000 - richieb (richieb@netlabs.net)
+
+Fixed a bug in the C code for ISE version of GDK_INPUT_FUNCTION.
+
+February 1st, 2000 - richieb (richieb@netlabs.net)
+
+Finished all the C code for gdk_input_functions. Tested basic
+features (notify not tested yet). Works for both ISE and SE.
+
+February 4th, 2000 - richieb (richieb@netlabs.net)
+
+Started to work on a more extensive tree widget example in test_gtk.
+Finished options window for now.
+
+February 7th, 2000 - richieb (richieb@netlabs.net)
+
+More on tree example. Creation of tree window done. Next
+callbacks and selections.
+
+Started on G_LIST class. Added a glib directory.
+
+February 8th, 2000 - richieb (richieb@netlabs.net)
+
+Changed G_LIST to inherit from C_HANDLE. Looks OK so far.
+
+February 10th, 2000 - richieb (richieb@netlabs.net)
+
+Completed "tree item add" in the tree example.
+Tested the tree example with SmallEiffel.
+
+February 13th, 2000 - richieb (richieb@netlabs.net)
+
+Removed a postcondition on GTK_CONTAINTER.remove_widget that caused
+a crash because the invariant of the removed widget was false.
+
+February 14th, 2000 - richieb (richieb@netlabs.net)
+
+Added remove_items code to the tree example. Single selection
+and multiple selections work now.
+
+February 19th, 2000 - richieb (richieb@netlabs.net)
+
+Added remove_subtree to tree example. Finishing up GTK_TREE widget.
+
+February 20th, 2000 - richieb (richieb@netlabs.net)
+
+Started to work on an extended GTK_CLIST example. Some renames of routines
+int GTK_CLIST to be more like their GTK names. Example not yet finished.
+
+Fixed a bug in GTK_LIST. "count" function was giving bogus results.
+Rewrote "count" to count the actual number of items in the list.
+The "children" array can be out of sync with the actual items in the
+list. This is OK as long as items do not get deleted too soon
+from the array.
+
+February 21st, 2000 - richieb (richieb@netlabs.net)
+
+To better test GTK_LIST I started to extend the GTK_LIST example
+from testgtk. Basic outline done, but all the callbacks still
+have to be done.
+
+
+February 22nd, 2000 - richieb (richieb@netlabs.net)
+
+More with the GTK_LIST example. A design question. Things that
+need g_list of items should be called what?
+
+February 24th, 2000 - richieb (richieb@netlabs.net)
+
+More on GTK_LIST example. Added calls to set and get gtk_adjustments
+to GTK_CONTAINER and GTK_SCROLLED_WINDOW.
+
+February 25th, 2000 - richieb (richieb@netlabs.net)
+
+Completed GTK_LIST example in testgtk.
+
+February 27th, 2000 - richieb (richieb@netlabs.net)
+
+Finished GDK_COLOR class. Improved GTK_STYLE to make it usable.
+Further work on the GTK_CLIST example in testgtk.
+
+March 3rd, 2000 - richieb@netlabs.net
+
+Added a "fetch_integer" routine for getting integer arguments during
+callbacks.
+
+March 8th, 2000 - richieb@netlabs.net
+
+More on GTK_CLIST example. Added code to add 10,000 rows. Looking at selection
+code. Need to finish extending G_LIST.
+
+March 9th, 2000 - richieb@netlabs.net
+
+More on G_LIST. Basic stuff available, but I still would like to implement
+G_LIST_CURSOR class.
+
+Added selection removal to the GTK_CLIST example. Had to extend GTK_CLIST
+to get at the selection list.
+
+March 10th, 2000 - richieb@netlabs.net 
+
+Implemented "cell_text" routine in GTK_CLIST.
+
+March 11th, 2000 - richieb@netlabs.net
+
+Fixed bug in C_LIST_ADD10000_CMD. I forgot to clone a string
+constant. Since SE doesn't clone them automatically the testgtk
+ran out of memory.
+
+Removed the invariant from C_STRUCT. The GC of SmallEiffel
+checks the invariant after call to "dispose" and that
+caused a crash, because dispose sets the handle to null.
+
+March 17th, 2000 - richieb@netlabs.net
+
+Added the code for the "Warning Test" button.
+
+March 18th, 2000 - richieb@netlabs.net
+
+Finished the GTK_CLIST example, except for the styles code which
+I couldn't get to work. This could be caused by the C interface
+problems.
+
+March 19th, 2000 - richieb@netlabs.net
+
+Added code for the button box example.
+Added GTK_BUTTON_BOX_STYLE_ENUM class. Extracted from GTK_BUTTON_BOX_EXTERNALS.
+Started on GTK_CTREE example.
+
+March 21st, 2000 - richieb@netlabs.net
+
+More coding of GTK_CTREE example. Just boring stuff, but now we have
+a window with all the buttons.
+
+March 26th, 2000 - richieb@netlabs.net
+
+Started on GTK_CTREE_NODE. Must implement the required C code and start
+recoding the GTK_CTREE routines.
+
+March 27th, 2000 - richieb@netlabs.net
+
+More on GTK_CTREE. Added a class GTK_CTREE_NODE and now I'm modifying
+all calls in GTK_CTREE to use it.
+
+March 29th, 2000 - richieb@netlabs.net
+
+Little more work on GTK_CTREE example. Bitmaps are not
+showing in the displayed tree. I don't know why.
+
+April 2nd, 2000 - richieb@netlabs.net
+
+Added an example of the drawing routines. Had to modify GDK_GC to add
+"ref" and "unref" routines. In creation of GDK_GC "ref" must be called
+and in dispose the "unref".
+
+Added a class to wrap G_HASH_TABLE. This one only works for integer
+keys and pointer values. This class needs to be extended in the future.
+
+April 8th, 2000 - richieb@netlabs.net
+
+More on GTK_CTREE. Added ref and unref to GDK_PIXMAP.
+
+April 9th, 2000 - richieb@netlabs.net
+
+Finished build_recursive routine for GTK_CTREE example. Fixed a bug
+in GTK_CLIST.set_column_auto_resizeable. Added a class GTK_CTREE_ROW.
+But to have that class work properly I need to add several other classes
+first: GDK_BIMAP, GTK_CLIST_ROW and few others.
+
+
+April 10th, 2000 - richieb@netlabs.net
+
+Added an EGTK_HANDLE class and EGTK_HANDLE_FACTORY for memory management
+of structs. Added to GTK_CTREE_NODE and started to change some 
+of the code in GTK_CTREE to use it.
+
+
+April 11th, 2000 - richieb@netlabs.net
+
+Modified GTK_CTREE to use the new handle factory. Added a GDK_BITMAP class
+and modified GDK_PIXMAP to create masks that can be used with their
+pixmaps. Updated C_TREE_CMD code.
+
+
+April 17th, 2000 - richieb@netlabs.net
+
+Fixed up image-scribble example. Fixed bitmaps display in GTK_CTREE example.
+Need to implement GTK_CELL and its descendants first, then continue
+on GTK_CLIST_ROW and then GTK_CTREE_ROW.
+
+
+April 18th, 2000 - richieb@netlabs.net
+
+Started on GTK_CELL classes.
+
+Added a README_W32 file which describes how to use eGTK on Windows.
+Contributed bu Sven Ehrke.
+
+
+April 21st, 2000 - richieb@netlabs.net
+
+Added classes for GTK_CELL types. Many of the routines are now there,
+but not yet completed. Added GTK_CLIST_ROW and GTK_CTREE_ROW classes.
+
+Started to add call backs to the GTK_CTREE example.
+
+
+April 26th, 2000 - richieb@netlabs.net
+
+Added missing GDK_EVENT_MOTION to GDK_EVENT_FACTORY.
+
+
+April 27, 2000 - richieb@netlabs.net
+
+Did C_TREE_AFTER_PRESS command to set the labels at the bottom
+of the tree window. However selection doesn't seem to work right.
+The count of items selected is wrong. Don't know why.
+
+
+April 30th, 2000 - richieb@netlabs.net
+
+More on the CTREE example. Added some easy callbacks.
+
+
+May 5th, 2000 - richieb@netlabs.net
+
+Added change_style callback. I still need to add font stuff.
+
+
+May 7th, 2000 - richieb@netlabs.net
+
+Integrated Jim Weirich's changes for GDK_FONT and GTK_TEXT stuff.
+
+
+May 8th, 2000 - richieb@netlabs.net
+
+Adapted GDK_FONT to ISE. Changed to be descendant of EGTK_HADLE for memory
+management purposes.
+
+
+May 10th, 2000 - richieb@netlabs.net
+
+Finished "change_style" button in GTK_CTREE example. Had to write
+all the code for GTK_CTREE_ROW.
+
+May 11th, 2000 - richieb@netlabs.net
+
+Added select_all and unselect_all buttons in GTK_CTREE example.
+
+
+May 12th, 2000 - Oliver Elphick <olly@lfix.co.uk>
+
+Added to GTK_CTREE and GTK_CLIST the ability to attach arbitrary data to
+the list, without having to keep Eiffel objects around.  This adds the
+classes EGTK_EXPORTABLE, EGTK_NON_PORTABLE_CALLS and C_EXPORTABLE.
+
+Added the ability to change the mouse cursor, plus some other low-level
+features of GDK_WINDOW.  GTK_WINDOW feature also added.
+
+Implemented many features in GTK_CLIST and GTK_CTREE; also added type
+safety to many features which were previously called only with POINTER
+arguments.  Added access to selections and iteration through multiple
+selections.  Added to GTK_CTREE retrieval of text, pixmap or both from
+a cell, using traditional Eiffel methods (update last.text, last.pixmap).
+
+Still TODO: implement ISE versions of new non-portable features.
+
+
+May 12th, 2000 - richieb@netlabs.net
+
+Implemented ISE versions of all the above non-portable features.
+Many fixes to get things to compile properly with ISE. Added 
+egtk/se and egtk/ise directories.
+
+
+May 15th, 2000 - richieb@netlabs.net
+
+Added two more call backs to tree example. 
+
+May 16th, 2000 - richieb@netlabs.net
+
+Added two more call backs to tree example. 
+Simplified options menu code and added some option menus to
+GTK_CTREE example.
+
+May 17th, 2000 - Oliver Elphick <olly@lfix.co.uk>
+
+Further fixes to EGTK_EXPORTABLE and related classes.  EGTK_EXPORTABLE
+now exports as a single string, because of problems getting back an
+array from outside Eiffel.
+
+May 17th, 2000 - richieb@netlabs.net
+
+Pretty much finished the CTREE example. Several things are not working,
+but I'm skipping those for now.
+
+
+May 18th, 2000 - Oliver Elphick <olly@lfix.co.uk>
+
+Removed handle_registry.e and shared_handle_registry.e (an abandoned
+experiment).  Added assertions to GTK_PROGRESS re enumerated constants.
+
+
+May 18th, 2000 - richieb@netlabs.net
+
+Added new GDK_EVENT classes.
+
+
+May 19th, 2000 - Oliver Elphick <olly@lfix.co.uk>
+
+Cleaned up EGTK_PORTABLE. Introduced new class (INCOMPATIBLES) for a
+couple of STRING features that are different between ISE and SE.
+EGTK_PORTABLE now compiles equally on ISE and SE.
+
+
+May 20th, 2000 - richieb@netlabs.net
+
+Started an example to test GDK_EVENTs. 
+
+
+May 22nd, 2000 - richieb@netlabs.net
+
+Added GDK_EVENT_SELECTION.
+
+
+May 24th, 2000 - Oliver Elphick <olly@lfix.co.uk>
+
+Fixed some ISE/SE conflicts.
+
+May 25th, 2000 - Oliver Elphick <olly@lfix.co.uk>
+
+Added set_decorations and set_functions to GDK_WINDOW, with equivalent
+features in GDK_WINDOW_EXTERNALS.  This also required two enumeration
+classes in gdk/externals.
+
+May 31st, 2000 richieb@netlabs.net
+
+Fixing the examples to compile with the latest code in preparation
+for next release.
+
+June 2nd, 2000 richieb@netlabs.net
+
+Finished fixing up the examples for new release of eGTK.
+for next release.
+
+June 4th, 2000 - Oliver Elphick <olly@lfix.co.uk>
+
+Created top-level loadpath.se that can be included by other loadpath.se
+files using SmallEiffel -0.76 or later.
+
+June 22, 2000 - richieb@netlabs.net
+
+Integrated the gnome example by Luc Tesch.
+
+June 28, 2000 - Oliver Elphick <olly@lfix.co.uk>
+
+Added more features for initialisation of GTK; added GTK_RC class
+and supporting features.  GTK_APPLICATION now inherits from GTK_RC.
+
+Created GTK_RC_STYLE class.
+
+More documentation of various classes.
+
+GTK_COMBO now inherits from GTK_BIN and GTK_ITEM to match GTK+.
+
+Implemented GTK_ACCEL_FLAGS.  Precondition on GTK_ACCEL_GROUP.add.
+
+Created G_UTILITIES class to implement utility features of glib.  At
+the moment this is confined to obtaining the home directory.
+
+
+June 29th, 2000 richieb@netlabs.net
+
+Added copyright headers to Gnome classes. Started testing compilation
+for 0.3.5. release. Fixed some ISE compilation bugs in new classes.
+
+July 3rd, 2000 richieb@netlabs.net
+
+Change GTK_OBJECT to use "ref" and "unref" to manage widgets. When we
+do "make_from_pointer" we call "ref" and then we call "unref" in dispose.
+When a widget is created then its reference count is set to 1, so for widgets
+directly created from Eiffel, calling "unref" in dispose is OK (it does the
+right thing - it destroys the widget).
+
+July 4th, 2000 richieb@netlabs.net
+
+Finished up changes for new ref/unref handling. Seems to work now.
+Fixed a bug in GTK_SPIN_BUTTON. The adjustment was deleted by the GC
+and the signal routine crashed.
+
+July 5th, 2000 - richieb@netlabs.net
+
+The tree example exhibits weird behaviour. When the window is closed a warning
+is received from GTK about unref-ing of a widget with ref_count = 0. 
+I don't understand how this happens, putting print statements in dispose
+of GTK_OBJECT only shows that this error appears before any dispose routines
+are run.
+
+July 5th, 2000 - Oliver Elphick <olly@lfix.co.uk>
+
+Modified egtkbuild to handle any order of command line arguments.
+Added lib/gnome paths to global loadpath.se.
+
+
+July 8th, 2000 - richieb@netlabs.net
+
+Updated the TODO list. Removing some obsolete files.
+
+
+July 10th, 2000 - Oliver Elphick <olly@lfix.co.uk>
+
+Updated the egtkbuild manpage to document the -with_gnome option.
+
+July 27th, 2000 - richieb@netlabs.net
+
+Removed expanded declarations from GTK_RANGE and GTK_SCALE to make them
+compile properly with eglade generated code. Added a classs GTK_UPDATE_ENUM
+for some shared constants.
+
+
+July 30th, 2000 - Oliver Elphick <olly@lfix.co.uk>
+
+Added extra safeguards in GTK_OBJECT.dispose to prevent segmentation faults
+caused by addressing a deallocated object in GTK+
+
+Changed some occurrences of from_external to from_external_copy in response
+to an account of problems on the SmallEiffel mailing list.
+
+examples/mozembed/loadpath.se now points to lib/mozembed instead of
+lib/mozilla.
+
+
+March 9th, 2001 - richieb@netlabs.net
+
+Fixed couple of SmallEiffel compile warnings.
+
+
+Feb 26th 2002 - Oliver Elphick <olly@lfix.co.uk>
+
+GTK_CLIST added routines to find the row and column selected.
+
+eif_gtk_identified.c: included malloc.h
+
+Some spelling and formatting changes.
+Some fixes for obsolescence of ARRAY.empty; occurences changed to "count = 0".
+
+Fixes to EGTK_MESSAGE_HANDLING, EGTK_MESSAGE and its descendants
+**TODO** Get rid of fixed pathnames for the pixmaps
+The message dialog is now modal.  The parent widget must now be a GTK_WINDOW.
+
+GDK_EVENT_FACTORY: debug trace messages
+
+GDK_FONT: register a font after loading it.
+**TODO** find out why unregistering it causes a segfault.
+
+GDK_OBJECT: export some features only to certain classes
+
+GTK_CTREE: add features - node_parent, node_sibling, node_child
+
+GTK_CTREE_ROW: rename feature children tochild.
+
+GTK_DIALOG: remove feature set_modal, move it to GTK_WINDOW reimplemented
+as gtk_window_set_modal().
+
+GTK_NOTEBOOK: add set_page(p) routine
+
+GTK_STATUS_BAR: now inherits from GTK_BOX instead of GTK_WIDGET
+
+GTK_STYLE: new creation features - make_from_pointer, make_from_default,
+make_from_style; new feature default_style.  Added an invariant.
+
+GTK_WIDGET: do not redefine GTK_OBJECT.dispose; add feature grab_focus; 
+when reparenting, use gtk_reparent() instead of remove_child. Add new
+feature set_style.
+
+GTK_WINDOW: add features: set_wmclass, add_accel_group, remove_accel_group,
+set_window_position, activate_default, activate_focus, set_transient_for,
+set_geometry_hints, set_default_size and set_modal.
+
+lib/gtk/se/gtk_non_portable_calls.e: np_gtk_clist_set_text now calls
+gtk_clist_set_text instead of gtk_clist_set_column_title.
+
+
+March 2nd 2002 - Oliver Elphick <olly@lfix.co.uk>
+
+Added egtk.ace.include as a file containing Ace file extracts to be added 
+to any SmallEiffel Ace file when using eGTK.
+
+Removed feature string_index from lib/egtk/INCOMPATIBLES, since ISE and
+SmallEiffel now both agree on the arguments of STRING.index_of
+
+Added GDK_GEOMETRY with appropriate C routines; correctiosn to GTK_WINDOW's
+use of GDK_GEOMETRY.
+
+Changed pixmap pathnames in EGTK_MESSAGE_* to /usr/lib/egtk/... but this
+still needs a proper fix to search a pixmap path.
+
+EGTK_MESSAGE_QUERY: corrected type of passed command objects
+
+GDK_OBJECT: export object to GDK_EVENT and GTK_NON_PORTABLE_CALLS
+GDK_GC: export gc to GTK_PREVIEW
+
+EGTK_SCROLLED_LIST: change GTK_POLICY_AUTOMATIC to mixed case to let this
+class pass short
+
+GTK_TOOLBAR: in inheritance from GTK_COMPOSED_BIN, rename set_style as
+widget_set_style to avoid conflict with new feature set_style with different
+argument types.
+
+loadpath.se:  Added paths for mozilla and mozembed
+
+
+March 2nd 2002 - Oliver Elphick <olly@lfix.co.uk>
+
+GTK_EDITABLE: add features get_text_cursor_position and
+set_text_cursor_position
+
+GTK_ENTRY: now inherits from GTK_EDITABLE as it should.  Implemented
+feature text_length deferred from GTK_EDITABLE. 
+
+
+April 12th 2002 -  Oliver Elphick <olly@lfix.co.uk>
+
+C_ALLOC: changed the SmallEiffel version to make the external call use
+SmallEiffel -0.74 syntax.
+
+
+April 13th 2002 -  Oliver Elphick <olly@lfix.co.uk>
+
+Corrections to code in examples (from Didier Clerc).
+
+Removed feature c_gtk_toolbar_append_item from GTK_NON_PORTABLE_CALLS,
+because it was not used anywhere (GTK_TOOLBAR calls the GTK+ function
+directly).  Removed the corresponding C code from C/se/gtk-eiffel.c
+
+
+April 16th 2002 -  Oliver Elphick <olly@lfix.co.uk>
+
+Removed duplicate setting of saved_type from GTK_OBJECT.make_from_pointer.
+Added explanation to obsolete clause in GTK_UTILITY.
+
+Changed bool_to_int to use local code in GDK_DRAWABLE and GTK_SCALE; as
+a result, GTK_UTILITY is now completely redundant and will be removed in
+the next release (after 0.3.6).
+
+Added raise and lower features to GTK_WINDOW and GDK_WINDOW.
+
+
+April 18th 2002 -  Oliver Elphick <olly@lfix.co.uk>
+
+GDK_DRAWABLE and GTK_SCALE: use BOOLEAN.to_integer instead of setting a
+local integer variable.
+
+GDK_GEOMETRY: correction - rename feature c_gdk_object to
+c_gdk_geometry_object
+
+GTK_SELECTION_EXTERNALS - remove some garbage characters from the start
+of the file
+
+Released as 0.3.6
+
+
+April 21st 2002 - Richie Bielak <richieb@netlabs.net>
+
+Added Ace files for ISE 5 compiler. They are called Ace.ise5.ace. Added
+a Makefile.ise5 for building ISE v5 C files
+
+GTK_STATUS_BAR - added creation of "children" in "make", otherwise
+an invariant was violated.
+
+Released as 0.3.6.1
+
+
+May 8th 2002 -  Oliver Elphick <olly@lfix.co.uk>
+
+GTK_SPIN_BUTTON now inherits from GTK_ENTRY (to match GTK+).
+
+GTK_EDITABLE: select_region now accepts a negative finish parameter (which
+indicates that the selection is from the starting position to the very end
+of the text).
+
+EGTK_MESSAGE and descendants: provide routines to change the button text.
+
+August 28th 2002, DJAC <djac@altern.org>
+
+Add some classes in eGTK/lib/gnome/canvas:
+	GNOME_CANVAS_POLYGON
+	GNOME_CANVAS_IMAGE
+	GNOME_CANVAS_RE
+	GNOME_CANVAS_ELLIPSE
+	GNOME_CANVAS_RECTANGLE
+Add some features in eGTK/lib/gnome/canvas:
+	GNOME_CANVAS_GROUP :: set_position(xa,ya :INTEGER)
+	GNOME_CANVAS_TEXT :: 
+		text_width:INTEGER,
+		text_height:INTEGER, 
+		clip_width:DOUBLE, 
+		set_clip_width(d:DOUBLE), 
+		clip_height:DOUBLE, 
+		set_clip_height(d:DOUBLE), 
+		set_clip(b:BOOLEAN), 
+		clip: BOOLEAN,
+		x_offset:DOUBLE, 
+		set_x_offset(d:DOUBLE),
+		set_y_offset(d:DOUBLE),
+		y_offset:DOUBLE
+
+Add labels to assertions in GNOME_CANVAS_ITEM
+
+Modify set_position(xa,ya:INTEGER) in GNOME_CANVAS_LINE and GNOME_CANVAS_TEXT to treat the y axe. 
+
+Add some features in eGTK/lib/gnome/externals in:
+	GNOME_CANVAS_EXTERNAL::
+		c_gnome_canvas_ellipse_new(group:POINTER):POINTER
+		c_gnome_canvas_re_new(group:POINTER):POINTER
+		c_gnome_canvas_rect_new(group:POINTER):POINTER
+		c_gnome_canvas_polygon_new(group:POINTER; n:INTEGER;p:POINTER):POINTER
+		c_gnome_canvas_image_new(group:POINTER;filename:POINTER):POINTER
+Add some features in eGTK/lib/gtk/:
+	GTK_TOOLBAR::
+		append_item_multi_signal(label, tooltip,tooltip_private:STRING; icon: GTK_WIDGET; cmds: ARRAY[GTK_COMMANDS];sigs:ARRAY[STRING])
+		multi_signal(an_object:GTK_OBJECT;cmds:ARRAY[GTK_COMMAND];sigs:ARRAY[STRING])
+		append_toggle_item(label,tooltip,tooltip_private:STRING;icon:GTK_WIDGET;cmd:GTK_COMMAND)
+		append_radio_item((label,tooltip,tooltip_private:STRING;group:POINTER; icon:GTK_WIDGET;cmd:GTK_COMMAND)
+		last_pointer:POINTER
+Add some creation features in eGTK/lib/gtk/GTK_TOGGLE_BUTTON::
+		make_from_pointer
+		make_with_pixmap
+Replace !! by create in eGTK/lib/gtk/GTK_COMBO
+		
+Add eGTK/bin/acebuilder.sh, it is a Bash script that create an ACE file and compile it. This script uses eGTK/begin_universal_ace, eGTK/custom_ace and eGTK/end_universal_ace. It is a challenger of egtkbuild.
+
+January 1st 2003 -  Oliver Elphick <olly@lfix.co.uk>
+
+Rewrite GTK_PIXMAP.make_from_xpm to use the recommended method of
+creating a GDK_PIXMAP and using it in make.  Remove the obsolete clause.
+Obsolete find_xpm.
+
+Do not attempt to modify the xpm file path or find the file.  We will rely
+on the rc file parsing to set the pixmap search path.  It is up to the
+user to see that this happens.
+
+
+January 11th 2003 -  Oliver Elphick <olly@lfix.co.uk>
+
+GTK_PIXMAP - undefine copy and is_equal in all inherited classes except
+in GTK_MISC to avoid inheritance clash.  Similarly in EGTK_MESSAGE.
+
+GTK_LIST_ITEM - change obsolete syntax "{GTK_WIDGET} precursor" to
+"precursor {GTK_WIDGET}"
+
+GNOME_CANVAS_RE - fixed apparent typos (GDK_WINDOWS and GKD_WINDOW should
+both be GDK_WINDOW; GKD_COLOR should be GDK_COLOR).  Similarly in
+GNOME_CANVAS_POLYGON.
+
+GDK_OBJECT - export feature object to the GNOME_CANVAS_* classes.
+
+GNOME_CANVAS_RE - changed apparent typos: "canvas_nocanvas_npc" should be 
+"canvas_npc"; "heigth" should be "height".
+
+EGTK_MESSAGE_* - don't use absolute pathnames for pixmaps; the pixmap path
+should be defined in an rc file.
+
+Changed "!!" to "create " throughout.
+
+
+January 12th 2003 - Richie Bielak <richieb@netlabs.net>
+
+Verified that code compiles and works with ISE 5.1. Small changes to GTK_NON_PORTABLE_CALLS
+the ISE version.
+
+
+January 17th 2003 -  Oliver Elphick <olly@lfix.co.uk>
+
+Added require assertion to CTK_CTREE insert_node: a parent node must not
+be a leaf.  (If it was, the insert would fail silently.)
+
+January 18th, 2003 - Richie Bielak <richieb@netlabs.net>
+
+Fixed the ISE makefile for C libraries to use ISE 5.1 includes

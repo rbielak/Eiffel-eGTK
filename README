@@ -1,0 +1,80 @@
+INSTALLATION:
+
+	1. Get and install gtk+-1.2.x (or better)
+	2. unpack the tar file into "$HOME/Eiffel" directory
+	3. If you are using SmallEiffel then go to
+		  $HOME/Eiffel/eGTK/C/se and type "make.
+	   If you are using ISE Eiffelt then go to
+			  $HOME/Eiffel/eGTK/C/ise and type "make.
+	4. Now you can compile using the Ace.ace files (for ISE)
+	   or Makefiles for SE in various subdirectories under	
+	   "examples"
+	5. If you also want to try the Gnome example you need to compile
+	   the C/Gnome libraries. This is done by issueing the command,
+	   in the same C directories:
+
+			make -f Makefile.withgnome
+
+	6. If you are using SmallEiffel you can use the script in $EGTK/bin
+	   egtkbuild to make it easier to compile your programs.
+
+NOTES:
+
+	1. You will need ISE Eiffel 5 compiler (see http://www.eiffel.com), 
+	   which is not free or SmallEiffel -0.74 Beta #21. Although
+	   most things should still work with the oled compilers.
+	2. Gtk+ has been ported to Windows, however this code has
+	   not been tested on Windows at all. You can read the README_W32
+	   on how to use eGTK on Windows.
+
+
+You will need to define an enviroment variable  EGTK that points
+to the directory where the Eiffel sources are. On my system I have:
+
+	EGTK=/home/nrichieb/Eiffel/gtk
+
+To compile with SmallEiffel simply go to the gtk/examples directories
+and type "make" to compile that example. For ISE each example directory
+contains an Ace file. You also have to separately compile the C code 
+in gtk/C/ise.
+
+PROBLEMS:
+
+If you are using Microsoft Visual C and ISE 4.5 or SmallEiffel compiler
+on Windows you will probably run into trouble with the way booleans are
+passed to GTK routines. At the moment there is no portable way to
+solve this problem. If you get stuck let me know and I'll see what
+we can do. 
+
+EXAMPLES:
+
+Here is a brief description of the examples found in the 
+"examples" subdirectory:
+
+	1. drawing - simple example of GTK_DRAWING_AREA widget
+	2. events - an example of catching various kinds of GDK events
+		(for example key presses and releases)
+	3. fixed_text  - example of use of text widget
+	4. gnome_canvas - example of graphics with Gnome_canvas widget.
+	5. hello - simple hello world program showing one button with a callback
+	6. image-scribble-simple - another simple drawing program, shows tracking
+		of mouse events.
+	7. menu - example of menus and their call backs
+	8. mozbed - imbedded Mozilla widget (does not work yet)
+	9. mozilla - Mozilla widget - this code is obsolete.
+	10. packing - simple example of packing button widgets into a box widget
+	11. pixmap - a button with a changing pixmap
+	12. range_widgets - example of range widget
+	13. testgtk - large test program that demonstrates use of many different 
+    	widgets, including buttons, radio buttons, lists, file and color selectors,
+		etc.
+	14. tictactoe - play the game of Tic Tac Toe against the computer
+	15. toolbar - nothing here, this example is part of testgtk
+	16. tree - example of the tree widget
+
+
+Enjoy!
+
+richieb@netlabs.net  eGTK home page: http://www.netlabs.net/~richieb/gtk_eiffel.html
+
+April 22nd, 2002

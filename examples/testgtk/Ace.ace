@@ -1,0 +1,45 @@
+-- Copyright 1998 Richie Bielak and others
+-- Licensed under Eiffel Forum Freeware License, version 1;
+-- (see forum.txt)
+
+system
+
+	test_gtk
+
+root
+
+
+	test_gtk (root_cluster): "make"
+
+
+default
+
+	assertion (all);
+	precompiled ("$EIFFEL4/precomp/spec/$PLATFORM/base");
+	address_expression (yes);
+
+cluster
+	
+	root_cluster: "$EGTK/examples/testgtk";
+
+	-- eGTK
+	gtk: "$EGTK/lib/gtk";
+	gtk_extern: "$EGTK/lib/gtk/externals";
+	gtk_ise: "$EGTK/lib/gtk/ise";
+	gdk: "$EGTK/lib/gdk";
+	gdk_extern: "$EGTK/lib/gdk/externals";
+	gdk_ise: "$EGTK/lib/gdk/ise";
+	egtk: "$EGTK/lib/egtk";	
+	egtk_ise: "$EGTK/lib/egtk/ise";	
+	glib: "$EGTK/lib/glib";
+	eifc: "$EGTK/lib/eifc";
+	eifc_ise: "$EGTK/lib/eifc/ise";
+	eifc_extern: "$EGTK/lib/eifc/externals";
+
+external
+
+	object:
+		"${EGTK}/C/ise/eif_gtk.a",
+		"-lm `gtk-config --libs`"
+
+end

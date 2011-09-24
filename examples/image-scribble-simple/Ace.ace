@@ -1,0 +1,48 @@
+system
+
+	image_scribble_app
+
+root
+	image_scribble_app (root_cluster): "make"
+
+default
+	assertion (require)
+	multithreaded (no)
+	console_application (no)
+	dynamic_runtime (no)
+	dead_code_removal (yes)
+	profile (no)
+	line_generation (no)
+	debug  (no)
+	array_optimization (no)
+	inlining (no)
+	inlining_size ("4")
+	precompiled ("$EIFFEL4/precomp/spec/$PLATFORM/base");
+	address_expression (Yes)
+
+cluster
+	
+	root_cluster: "$EGTK/examples/image-scribble-simple";
+
+	gtk: "$EGTK/lib/gtk";
+	gtk_ise: "$EGTK/lib/gtk/ise";
+	gtk_extern: "$EGTK/lib/gtk/externals";
+	gdk: "$EGTK/lib/gdk";
+	gdk_extern: "$EGTK/lib/gdk/externals";
+	gdk_ise: "$EGTK/lib/gdk/ise";
+	egtk: "$EGTK/lib/egtk";	
+	egtk_ise: "$EGTK/lib/egtk/ise";	
+	glib: "$EGTK/lib/glib";
+	eifc: "$EGTK/lib/eifc";
+	eifc_ise: "$EGTK/lib/eifc/ise";
+	eifc_extern: "$EGTK/lib/eifc/externals";
+
+
+external
+     object:
+                "-lm -L/usr/X11R6/lib -lX11 -lXt -lXext -L/usr/lib -lgdk -lgtk",
+                "-lglib -lgmodule",
+--                "${EGTK}/C/ise/gtk_eiffel.o"
+                "${EGTK}/C/ise/eif_gtk.a"
+
+end

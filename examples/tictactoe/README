@@ -1,0 +1,12 @@
+November 28th, 1999
+
+The initial UI for this example was generated using glade and
+eglade. Then I modified the code accordingly.
+
+Before you compile this example you have to modify the
+absolute paths to the .xpm files for the cross and nought.
+
+For the moment eGTK doesn't yet translate environment variables
+properly.
+
+...richie

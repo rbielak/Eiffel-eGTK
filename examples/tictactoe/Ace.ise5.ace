@@ -1,0 +1,69 @@
+system
+	"tictactoe"
+
+root
+	TICTACTOE: make
+
+default
+	precompiled ("$ISE_EIFFEL/precomp/spec/$PLATFORM/base")
+	assertion (check)
+	assertion (require)
+	assertion (ensure)
+	assertion (loop)
+	assertion (invariant)
+	arguments (" ")
+	disabled_debug (yes)
+	debug (no)
+	line_generation (yes)
+	profile (no)
+	trace (no)
+	check_vape (yes)
+	console_application (no)
+	address_expression (yes)
+	array_optimization (no)
+	dead_code_removal (yes)
+	dynamic_runtime (no)
+	exception_trace (no)
+	inlining (no)
+	multithreaded (no)
+
+
+-- # Copyright 1998 Richie Bielak and others
+-- # Licensed under Eiffel Forum Freeware License, version 1;
+-- # (see forum.txt)
+
+cluster
+	root_cluster:		"$EGTK/examples/tictactoe"
+
+
+	gtk:		"$EGTK/lib/gtk"
+
+	gtk_ise:		"$EGTK/lib/gtk/ise"
+
+	gtk_extern:		"$EGTK/lib/gtk/externals"
+
+	gdk:		"$EGTK/lib/gdk"
+
+	gdk_extern:		"$EGTK/lib/gdk/externals"
+
+	gdk_ise:		"$EGTK/lib/gdk/ise"
+
+	egtk:		"$EGTK/lib/egtk"
+
+	egtk_ise:		"$EGTK/lib/egtk/ise"
+
+	glib:		"$EGTK/lib/glib"
+
+	eifc:		"$EGTK/lib/eifc"
+
+	eifc_ise:		"$EGTK/lib/eifc/ise"
+
+	eifc_extern:		"$EGTK/lib/eifc/externals"
+
+external
+
+	object:
+		"${EGTK}/C/ise/eif_gtk.a",
+		"-lm `gtk-config --libs`"
+
+end

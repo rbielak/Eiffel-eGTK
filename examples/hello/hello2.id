@@ -1,0 +1,1015 @@
+119 "GTK_ENTRY" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_entry.e"
+class-name: GTK_ENTRY
+parent-count: 2 parents: 221 191 
+c-type: T119 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_ENTRY (119)
+#
+165 "GTK_NON_PORTABLE_CALLS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/se/gtk_non_portable_calls.e"
+class-name: GTK_NON_PORTABLE_CALLS
+parent-count: 35 parents: 205 133 203 202 201 200 199 198 197 196 156 195 194 193 192 191 190 124 189 188 187 186 185 179 177 176 175 174 172 171 170 169 168 167 166 
+c-type: T165 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_NON_PORTABLE_CALLS (165)
+#
+126 "GTK_MAIN_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_main_externals.e"
+class-name: GTK_MAIN_EXTERNALS
+parent-count: 0
+#
+4 "REAL" 
+#
+167 "GTK_PREVIEW_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_preview_externals.e"
+class-name: GTK_PREVIEW_EXTERNALS
+parent-count: 0
+#
+243 "STD_OUTPUT" 
+class-path: "/home/apps/SmartEiffel/lib/io/std_output.e"
+class-name: STD_OUTPUT
+parent-count: 1 parents: 244 
+c-type: T243 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	STD_OUTPUT (243)
+#
+246 "GTK_FUNCTION" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/se/gtk_function.e"
+class-name: GTK_FUNCTION
+parent-count: 0
+c-type: T246 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_FUNCTION (246)
+#
+259 "GDK_EVENT_PROPERTY" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_event_property.e"
+class-name: GDK_EVENT_PROPERTY
+parent-count: 1 parents: 248 
+c-type: T259 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GDK_EVENT_PROPERTY (259)
+#
+253 "GDK_EVENT_KEY" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_event_key.e"
+class-name: GDK_EVENT_KEY
+parent-count: 2 parents: 248 249 
+c-type: T253 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GDK_EVENT_KEY (253)
+#
+234 "GTK_VSEPARATOR_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_vseparator_externals.e"
+class-name: GTK_VSEPARATOR_EXTERNALS
+parent-count: 0
+#
+207 "ARRAYED_COLLECTION" 
+class-path: "/home/apps/SmartEiffel/lib/base/arrayed_collection.e"
+class-name: ARRAYED_COLLECTION
+parent-count: 1 parents: 208 
+#
+238 "GTK_HBOX_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_hbox_externals.e"
+class-name: GTK_HBOX_EXTERNALS
+parent-count: 0
+#
+230 "GTK_MISC" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_misc.e"
+class-name: GTK_MISC
+parent-count: 2 parents: 139 231 
+#
+141 "GDK_WINDOW_DECORATIONS_ENUM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/externals/gdk_window_decorations_enum.e"
+class-name: GDK_WINDOW_DECORATIONS_ENUM
+parent-count: 0
+#
+159 "GTK_COMMAND_TYPE" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/se/gtk_command_type.e"
+class-name: GTK_COMMAND_TYPE
+parent-count: 2 parents: 122 151 
+c-type: T159 reference: yes
+ref-status: dead 
+run-time-set-count: 2
+run-time-set:
+	QUIT_COMMAND (157)
+	HELLO_COMMAND (213)
+#
+145 "GTK_WIDGET_FLAGS_ENUM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_widget_flags_enum.e"
+class-name: GTK_WIDGET_FLAGS_ENUM
+parent-count: 0
+#
+123 "GTK_RC" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_rc.e"
+class-name: GTK_RC
+parent-count: 2 parents: 124 122 
+#
+150 "MEMORY" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/memory.e"
+class-name: MEMORY
+parent-count: 0
+#
+224 "GTK_COMPOSED_BIN" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_composed_bin.e"
+class-name: GTK_COMPOSED_BIN
+parent-count: 1 parents: 137 
+#
+10 "INTEGER_16" 
+#
+2 "INTEGER_32" 
+#
+11 "INTEGER_64" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/integer_64.e"
+class-name: INTEGER_64
+parent-count: 1 parents: 161 
+c-type: T11 reference: no
+#
+256 "GDK_EVENT_MOTION" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_event_motion.e"
+class-name: GDK_EVENT_MOTION
+parent-count: 2 parents: 248 147 
+c-type: T256 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GDK_EVENT_MOTION (256)
+#
+198 "GTK_TEXT_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_text_externals.e"
+class-name: GTK_TEXT_EXTERNALS
+parent-count: 0
+#
+184 "GTK_JUSTIFICATION_ENUM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_justification_enum.e"
+class-name: GTK_JUSTIFICATION_ENUM
+parent-count: 0
+#
+201 "GTK_CHECK_MENU_ITEM_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_check_menu_item_externals.e"
+class-name: GTK_CHECK_MENU_ITEM_EXTERNALS
+parent-count: 0
+#
+249 "GDK_EVENT_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/externals/gdk_event_externals.e"
+class-name: GDK_EVENT_EXTERNALS
+parent-count: 0
+#
+122 "EGTK_NON_PORTABLE" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/egtk/egtk_non_portable.e"
+class-name: EGTK_NON_PORTABLE
+parent-count: 0
+#
+176 "GTK_STATUS_BAR_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_status_bar_externals.e"
+class-name: GTK_STATUS_BAR_EXTERNALS
+parent-count: 0
+#
+195 "GTK_RADIO_BUTTON_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_radio_button_externals.e"
+class-name: GTK_RADIO_BUTTON_EXTERNALS
+parent-count: 0
+#
+173 "GTK_UPDATE_ENUM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_update_enum.e"
+class-name: GTK_UPDATE_ENUM
+parent-count: 0
+#
+158 "GDK_EVENT_COMMAND" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_event_command.e"
+class-name: GDK_EVENT_COMMAND
+parent-count: 1 parents: 159 
+#
+244 "OUTPUT_STREAM" 
+class-path: "/home/apps/SmartEiffel/lib/io/output_stream.e"
+class-name: OUTPUT_STREAM
+parent-count: 0
+c-type: T244 reference: yes
+ref-status: dead 
+run-time-set-count: 1
+run-time-set:
+	STD_OUTPUT (243)
+#
+5 "DOUBLE" 
+#
+2 "INTEGER" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/integer.e"
+class-name: INTEGER
+parent-count: 1 parents: 161 
+c-type: T2 reference: no
+#
+185 "GTK_COMBO_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_combo_externals.e"
+class-name: GTK_COMBO_EXTERNALS
+parent-count: 0
+#
+174 "GTK_PROGRESS_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_progress_externals.e"
+class-name: GTK_PROGRESS_EXTERNALS
+parent-count: 0
+#
+194 "GTK_CHECK_BUTTON_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_check_button_externals.e"
+class-name: GTK_CHECK_BUTTON_EXTERNALS
+parent-count: 0
+#
+146 "GTK_STATETYPE_ENUM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_statetype_enum.e"
+class-name: GTK_STATETYPE_ENUM
+parent-count: 0
+#
+135 "EGTK_SHARED_WIDGET_FACTORY" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/egtk/egtk_shared_widget_factory.e"
+class-name: EGTK_SHARED_WIDGET_FACTORY
+parent-count: 0
+#
+148 "GTK_OBJECT" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_object.e"
+class-name: GTK_OBJECT
+parent-count: 5 parents: 152 151 122 135 149 
+c-type: T148 reference: yes
+ref-status: dead 
+run-time-set-count: 2
+run-time-set:
+	GTK_WINDOW (131)
+	GTK_BUTTON (155)
+#
+129 "PLATFORM" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/platform.e"
+class-name: PLATFORM
+parent-count: 1 parents: 130 
+#
+248 "GDK_EVENT" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_event.e"
+class-name: GDK_EVENT
+parent-count: 2 parents: 250 249 
+c-type: T248 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 10
+run-time-set:
+	GDK_EVENT (248)
+	GDK_EVENT_BUTTON (252)
+	GDK_EVENT_KEY (253)
+	GDK_EVENT_CONFIGURE (254)
+	GDK_EVENT_EXPOSE (255)
+	GDK_EVENT_MOTION (256)
+	GDK_EVENT_VISIBILITY (257)
+	GDK_EVENT_FOCUS (258)
+	GDK_EVENT_PROPERTY (259)
+	GDK_EVENT_SELECTION (260)
+#
+170 "GTK_FONTSEL_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_fontsel_externals.e"
+class-name: GTK_FONTSEL_EXTERNALS
+parent-count: 0
+#
+164 "SAFE_EQUAL" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/safe_equal.e"
+class-name: SAFE_EQUAL
+parent-count: 0
+#
+197 "GTK_TOOLBAR_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_toolbar_externals.e"
+class-name: GTK_TOOLBAR_EXTERNALS
+parent-count: 0
+#
+140 "GDK_WINDOW_FUNCTIONS_ENUM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/externals/gdk_window_functions_enum.e"
+class-name: GDK_WINDOW_FUNCTIONS_ENUM
+parent-count: 0
+#
+223 "GTK_NOTEBOOK_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_notebook_externals.e"
+class-name: GTK_NOTEBOOK_EXTERNALS
+parent-count: 0
+#
+250 "C_HANDLE" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/eifc/c_handle.e"
+class-name: C_HANDLE
+parent-count: 1 parents: 150 
+#
+186 "GTK_TREE_ITEM_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_tree_item_externals.e"
+class-name: GTK_TREE_ITEM_EXTERNALS
+parent-count: 0
+#
+132 "GTK_CONSTANTS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_constants.e"
+class-name: GTK_CONSTANTS
+parent-count: 0
+#
+237 "GTK_BOX_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_box_externals.e"
+class-name: GTK_BOX_EXTERNALS
+parent-count: 0
+#
+225 "ARRAY[GTK_WIDGET]" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/array.e"
+class-name: ARRAY
+parent-count: 1 parents: 207 
+c-type: T225 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	ARRAY[GTK_WIDGET] (225)
+#
+228 "GTK_PIXMAP" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_pixmap.e"
+class-name: GTK_PIXMAP
+parent-count: 5 parents: 230 123 187 122 229 
+c-type: T228 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_PIXMAP (228)
+#
+189 "GTK_LABEL_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_label_externals.e"
+class-name: GTK_LABEL_EXTERNALS
+parent-count: 1 parents: 184 
+#
+181 "GTK_VISIBILITY_ENUM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_visibility_enum.e"
+class-name: GTK_VISIBILITY_ENUM
+parent-count: 0
+#
+144 "GDK_CONSTANTS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_constants.e"
+class-name: GDK_CONSTANTS
+parent-count: 0
+#
+9 "NATIVE_ARRAY[CHARACTER]" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/native_array.e"
+class-name: NATIVE_ARRAY
+parent-count: 1 parents: 164 
+c-type: T9 reference: no
+#
+209 "TUPLE" 
+class-path: "TUPLE"
+class-name: TUPLE
+parent-count: 0
+#
+214 "GTK_COMMAND" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_command.e"
+class-name: GTK_COMMAND
+parent-count: 1 parents: 159 
+#
+187 "GTK_PIXMAP_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_pixmap_externals.e"
+class-name: GTK_PIXMAP_EXTERNALS
+parent-count: 0
+#
+227 "NATIVE_ARRAY[GTK_WIDGET]" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/native_array.e"
+class-name: NATIVE_ARRAY
+parent-count: 1 parents: 164 
+c-type: T227 reference: no
+#
+134 "GTK_BIN" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_bin.e"
+class-name: GTK_BIN
+parent-count: 3 parents: 137 136 135 
+#
+206 "ARRAY" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/array.e"
+class-name: ARRAY
+parent-count: 1 parents: 207 
+#
+236 "GTK_BOX" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_box.e"
+class-name: GTK_BOX
+parent-count: 4 parents: 224 239 238 237 
+c-type: T236 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_BOX (236)
+#
+162 "NUMERIC" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/numeric.e"
+class-name: NUMERIC
+parent-count: 1 parents: 154 
+#
+191 "GTK_ENTRY_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_entry_externals.e"
+class-name: GTK_ENTRY_EXTERNALS
+parent-count: 0
+#
+7 "STRING" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/string.e"
+class-name: STRING
+parent-count: 2 parents: 154 160 
+c-type: T7 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	STRING (7)
+#
+247 "GDK_INPUT_FUNCTION" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/se/gdk_input_function.e"
+class-name: GDK_INPUT_FUNCTION
+parent-count: 1 parents: 122 
+c-type: T247 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GDK_INPUT_FUNCTION (247)
+#
+222 "GTK_NOTEBOOK" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_notebook.e"
+class-name: GTK_NOTEBOOK
+parent-count: 3 parents: 224 223 132 
+c-type: T222 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_NOTEBOOK (222)
+#
+215 "EGTK_WIDGET_FACTORY" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/egtk/egtk_widget_factory.e"
+class-name: EGTK_WIDGET_FACTORY
+parent-count: 4 parents: 149 152 216 122 
+c-type: T215 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	EGTK_WIDGET_FACTORY (215)
+#
+260 "GDK_EVENT_SELECTION" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_event_selection.e"
+class-name: GDK_EVENT_SELECTION
+parent-count: 1 parents: 248 
+c-type: T260 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GDK_EVENT_SELECTION (260)
+#
+155 "GTK_BUTTON" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_button.e"
+class-name: GTK_BUTTON
+parent-count: 4 parents: 134 156 122 135 
+c-type: T155 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_BUTTON (155)
+#
+169 "GTK_ASPECT_FRAME_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_aspect_frame_externals.e"
+class-name: GTK_ASPECT_FRAME_EXTERNALS
+parent-count: 0
+#
+193 "GTK_TOGGLE_BUTTON_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_toggle_button_externals.e"
+class-name: GTK_TOGGLE_BUTTON_EXTERNALS
+parent-count: 0
+#
+245 "/home/richieb/Eiffel/eiflibs/eGTK/C/se/cecil.se" 
+#
+203 "GTK_ACCEL_GROUP_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_accel_group_externals.e"
+class-name: GTK_ACCEL_GROUP_EXTERNALS
+parent-count: 1 parents: 204 
+#
+127 "GTK_APPLICATION_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_application_externals.e"
+class-name: GTK_APPLICATION_EXTERNALS
+parent-count: 0
+#
+152 "GTK_OBJECT_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_object_externals.e"
+class-name: GTK_OBJECT_EXTERNALS
+parent-count: 0
+#
+226 "ARRAYED_COLLECTION[GTK_WIDGET]" 
+class-path: "/home/apps/SmartEiffel/lib/base/arrayed_collection.e"
+class-name: ARRAYED_COLLECTION
+parent-count: 1 parents: 208 
+c-type: T226 reference: yes
+ref-status: dead 
+run-time-set-count: 0
+#
+199 "GTK_EDITABLE_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_editable_externals.e"
+class-name: GTK_EDITABLE_EXTERNALS
+parent-count: 0
+#
+133 "GTK_WINDOW_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_window_externals.e"
+class-name: GTK_WINDOW_EXTERNALS
+parent-count: 0
+#
+255 "GDK_EVENT_EXPOSE" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_event_expose.e"
+class-name: GDK_EVENT_EXPOSE
+parent-count: 1 parents: 248 
+c-type: T255 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GDK_EVENT_EXPOSE (255)
+#
+149 "GTK_IDENTIFIED" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/se/gtk_identified.e"
+class-name: GTK_IDENTIFIED
+parent-count: 1 parents: 150 
+c-type: T149 reference: yes
+ref-status: dead 
+run-time-set-count: 12
+run-time-set:
+	GTK_ENTRY (119)
+	GTK_WINDOW (131)
+	GTK_WIDGET (139)
+	GTK_BUTTON (155)
+	GTK_CURVE (217)
+	GTK_DRAWING_AREA (218)
+	GTK_NOTEBOOK (222)
+	GTK_PIXMAP (228)
+	GTK_SEPARATOR (232)
+	GTK_LABEL (235)
+	GTK_BOX (236)
+	GTK_TREE_ITEM (240)
+#
+220 "reference INTEGER_64" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/integer_64.e"
+class-name: INTEGER_64
+parent-count: 1 parents: 161 
+c-type: T220 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	reference INTEGER_64 (220)
+#
+139 "GTK_WIDGET" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_widget.e"
+class-name: GTK_WIDGET
+parent-count: 6 parents: 148 147 143 142 141 140 
+c-type: T139 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 12
+run-time-set:
+	GTK_ENTRY (119)
+	GTK_WINDOW (131)
+	GTK_WIDGET (139)
+	GTK_BUTTON (155)
+	GTK_CURVE (217)
+	GTK_DRAWING_AREA (218)
+	GTK_NOTEBOOK (222)
+	GTK_PIXMAP (228)
+	GTK_SEPARATOR (232)
+	GTK_LABEL (235)
+	GTK_BOX (236)
+	GTK_TREE_ITEM (240)
+#
+204 "GTK_ACCEL_FLAGS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_accel_flags.e"
+class-name: GTK_ACCEL_FLAGS
+parent-count: 0
+#
+219 "GTK_DRAWING_AREA_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_drawing_area_externals.e"
+class-name: GTK_DRAWING_AREA_EXTERNALS
+parent-count: 0
+#
+157 "QUIT_COMMAND" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/examples/hello/quit_command.e"
+class-name: QUIT_COMMAND
+parent-count: 2 parents: 158 121 
+c-type: T157 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	QUIT_COMMAND (157)
+#
+121 "GTK_APPLICATION" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_application.e"
+class-name: GTK_APPLICATION
+parent-count: 4 parents: 127 125 123 122 
+#
+231 "GTK_MISC_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_misc_externals.e"
+class-name: GTK_MISC_EXTERNALS
+parent-count: 0
+#
+251 "GDK_EVENT_FACTORY" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_event_factory.e"
+class-name: GDK_EVENT_FACTORY
+parent-count: 2 parents: 249 144 
+c-type: T251 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GDK_EVENT_FACTORY (251)
+#
+163 "NATIVE_ARRAY" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/native_array.e"
+class-name: NATIVE_ARRAY
+parent-count: 1 parents: 164 
+#
+200 "GTK_RADIO_MENU_ITEM_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_radio_menu_item_externals.e"
+class-name: GTK_RADIO_MENU_ITEM_EXTERNALS
+parent-count: 0
+#
+210 "ARRAY[GTK_COMMAND_TYPE]" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/array.e"
+class-name: ARRAY
+parent-count: 1 parents: 207 
+c-type: T210 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	ARRAY[GTK_COMMAND_TYPE] (210)
+#
+239 "GTK_VBOX_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_vbox_externals.e"
+class-name: GTK_VBOX_EXTERNALS
+parent-count: 0
+#
+216 "EGTK_WIDGET_TYPE_NAMES" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/egtk/egtk_widget_type_names.e"
+class-name: EGTK_WIDGET_TYPE_NAMES
+parent-count: 0
+#
+254 "GDK_EVENT_CONFIGURE" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_event_configure.e"
+class-name: GDK_EVENT_CONFIGURE
+parent-count: 1 parents: 248 
+c-type: T254 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GDK_EVENT_CONFIGURE (254)
+#
+168 "GTK_CURVE_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_curve_externals.e"
+class-name: GTK_CURVE_EXTERNALS
+parent-count: 0
+#
+242 "GTK_ITEM_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_item_externals.e"
+class-name: GTK_ITEM_EXTERNALS
+parent-count: 0
+#
+147 "GDK_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_externals.e"
+class-name: GDK_EXTERNALS
+parent-count: 0
+#
+213 "HELLO_COMMAND" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/examples/hello/hello_command.e"
+class-name: HELLO_COMMAND
+parent-count: 1 parents: 214 
+c-type: T213 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	HELLO_COMMAND (213)
+#
+180 "GTK_CELLTYPE_ENUM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_celltype_enum.e"
+class-name: GTK_CELLTYPE_ENUM
+parent-count: 0
+#
+205 "GLIB" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/glib/glib.e"
+class-name: GLIB
+parent-count: 0
+#
+190 "GTK_FRAME_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_frame_externals.e"
+class-name: GTK_FRAME_EXTERNALS
+parent-count: 0
+#
+153 "STRING_HANDLER" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/string_handler.e"
+class-name: STRING_HANDLER
+parent-count: 0
+#
+182 "GTK_SHADOWTYPE_ENUM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_shadowtype_enum.e"
+class-name: GTK_SHADOWTYPE_ENUM
+parent-count: 0
+#
+124 "GTK_RC_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_rc_externals.e"
+class-name: GTK_RC_EXTERNALS
+parent-count: 0
+#
+128 "ANY" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/any.e"
+class-name: ANY
+parent-count: 1 parents: 129 
+c-type: T128 reference: yes
+ref-status: dead 
+run-time-set-count: 1
+run-time-set:
+	STRING (7)
+#
+172 "GTK_COLORSEL_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_colorsel_externals.e"
+class-name: GTK_COLORSEL_EXTERNALS
+parent-count: 1 parents: 173 
+#
+258 "GDK_EVENT_FOCUS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_event_focus.e"
+class-name: GDK_EVENT_FOCUS
+parent-count: 1 parents: 248 
+c-type: T258 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GDK_EVENT_FOCUS (258)
+#
+235 "GTK_LABEL" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_label.e"
+class-name: GTK_LABEL
+parent-count: 2 parents: 230 189 
+c-type: T235 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_LABEL (235)
+#
+137 "GTK_CONTAINER" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_container.e"
+class-name: GTK_CONTAINER
+parent-count: 3 parents: 139 138 135 
+c-type: T137 reference: yes
+ref-status: dead 
+run-time-set-count: 1
+run-time-set:
+	GTK_WINDOW (131)
+#
+130 "GENERAL" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/general.e"
+class-name: GENERAL
+parent-count: 0
+c-type: T130 reference: yes
+ref-status: dead 
+run-time-set-count: 1
+run-time-set:
+	STRING (7)
+#
+136 "GTK_BIN_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_bin_externals.e"
+class-name: GTK_BIN_EXTERNALS
+parent-count: 0
+#
+218 "GTK_DRAWING_AREA" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_drawing_area.e"
+class-name: GTK_DRAWING_AREA
+parent-count: 2 parents: 139 219 
+c-type: T218 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_DRAWING_AREA (218)
+#
+183 "GTK_SELECTIONMODE_ENUM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_selectionmode_enum.e"
+class-name: GTK_SELECTIONMODE_ENUM
+parent-count: 0
+#
+233 "GTK_HSEPARATOR_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_hseparator_externals.e"
+class-name: GTK_HSEPARATOR_EXTERNALS
+parent-count: 0
+#
+229 "EXCEPTIONS" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/exceptions.e"
+class-name: EXCEPTIONS
+parent-count: 0
+#
+151 "GTK_SIGNAL_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_signal_externals.e"
+class-name: GTK_SIGNAL_EXTERNALS
+parent-count: 0
+#
+160 "COMPARABLE" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/comparable.e"
+class-name: COMPARABLE
+parent-count: 1 parents: 128 
+#
+1 "INTEGER_8" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/integer_8.e"
+class-name: INTEGER_8
+parent-count: 1 parents: 161 
+c-type: T1 reference: no
+#
+257 "GDK_EVENT_VISIBILITY" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_event_visibility.e"
+class-name: GDK_EVENT_VISIBILITY
+parent-count: 1 parents: 248 
+c-type: T257 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GDK_EVENT_VISIBILITY (257)
+#
+212 "NATIVE_ARRAY[GTK_COMMAND_TYPE]" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/native_array.e"
+class-name: NATIVE_ARRAY
+parent-count: 1 parents: 164 
+c-type: T212 reference: no
+#
+3 "CHARACTER" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/character.e"
+class-name: CHARACTER
+parent-count: 2 parents: 154 160 
+c-type: T3 reference: no
+#
+178 "GTK_CTREE_ENUM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_ctree_enum.e"
+class-name: GTK_CTREE_ENUM
+parent-count: 0
+#
+188 "GTK_TOOLTIPS_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_tooltips_externals.e"
+class-name: GTK_TOOLTIPS_EXTERNALS
+parent-count: 0
+#
+240 "GTK_TREE_ITEM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_tree_item.e"
+class-name: GTK_TREE_ITEM
+parent-count: 3 parents: 241 186 122 
+c-type: T240 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_TREE_ITEM (240)
+#
+192 "GTK_FILESEL_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_filesel_externals.e"
+class-name: GTK_FILESEL_EXTERNALS
+parent-count: 0
+#
+211 "ARRAYED_COLLECTION[GTK_COMMAND_TYPE]" 
+class-path: "/home/apps/SmartEiffel/lib/base/arrayed_collection.e"
+class-name: ARRAYED_COLLECTION
+parent-count: 1 parents: 208 
+c-type: T211 reference: yes
+ref-status: dead 
+run-time-set-count: 0
+#
+217 "GTK_CURVE" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_curve.e"
+class-name: GTK_CURVE
+parent-count: 2 parents: 218 168 
+c-type: T217 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_CURVE (217)
+#
+177 "GTK_CTREE_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_ctree_externals.e"
+class-name: GTK_CTREE_EXTERNALS
+parent-count: 2 parents: 178 122 
+#
+171 "GTK_COLOR_SELECTION_DIALOG_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_color_selection_dialog_externals.e"
+class-name: GTK_COLOR_SELECTION_DIALOG_EXTERNALS
+parent-count: 0
+#
+154 "HASHABLE" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/hashable.e"
+class-name: HASHABLE
+parent-count: 0
+#
+6 "BOOLEAN" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/boolean.e"
+class-name: BOOLEAN
+parent-count: 1 parents: 128 
+c-type: T6 reference: no
+#
+161 "INTEGER_GENERAL" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/integer_general.e"
+class-name: INTEGER_GENERAL
+parent-count: 2 parents: 162 160 
+#
+120 "HELLO2" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/examples/hello/hello2.e"
+class-name: HELLO2
+parent-count: 1 parents: 121 
+c-type: T120 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	HELLO2 (120)
+#
+138 "GTK_CONTAINER_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_container_externals.e"
+class-name: GTK_CONTAINER_EXTERNALS
+parent-count: 0
+#
+131 "GTK_WINDOW" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_window.e"
+class-name: GTK_WINDOW
+parent-count: 3 parents: 134 133 132 
+c-type: T131 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_WINDOW (131)
+#
+196 "GTK_LIST_ITEM_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_list_item_externals.e"
+class-name: GTK_LIST_ITEM_EXTERNALS
+parent-count: 0
+#
+221 "GTK_EDITABLE" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_editable.e"
+class-name: GTK_EDITABLE
+parent-count: 3 parents: 139 199 122 
+#
+232 "GTK_SEPARATOR" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_separator.e"
+class-name: GTK_SEPARATOR
+parent-count: 3 parents: 139 234 233 
+c-type: T232 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GTK_SEPARATOR (232)
+#
+202 "GTK_MENU_ITEM_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_menu_item_externals.e"
+class-name: GTK_MENU_ITEM_EXTERNALS
+parent-count: 0
+#
+0 "NONE" 
+#
+8 "POINTER" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/pointer.e"
+class-name: POINTER
+parent-count: 2 parents: 154 153 
+c-type: T8 reference: no
+#
+252 "GDK_EVENT_BUTTON" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gdk/gdk_event_button.e"
+class-name: GDK_EVENT_BUTTON
+parent-count: 1 parents: 248 
+c-type: T252 reference: yes
+ref-status: live id-field: yes 
+run-time-set-count: 1
+run-time-set:
+	GDK_EVENT_BUTTON (252)
+#
+142 "EGTK_SHARED_TOOLTIPS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/egtk/egtk_shared_tooltips.e"
+class-name: EGTK_SHARED_TOOLTIPS
+parent-count: 0
+#
+143 "GTK_WIDGET_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_widget_externals.e"
+class-name: GTK_WIDGET_EXTERNALS
+parent-count: 3 parents: 146 145 144 
+#
+175 "GTK_ACCEL_LABEL_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_accel_label_externals.e"
+class-name: GTK_ACCEL_LABEL_EXTERNALS
+parent-count: 0
+#
+156 "GTK_BUTTON_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_button_externals.e"
+class-name: GTK_BUTTON_EXTERNALS
+parent-count: 0
+#
+241 "GTK_ITEM" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_item.e"
+class-name: GTK_ITEM
+parent-count: 2 parents: 134 242 
+#
+179 "GTK_CLIST_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_clist_externals.e"
+class-name: GTK_CLIST_EXTERNALS
+parent-count: 5 parents: 184 183 182 181 180 
+#
+166 "GTK_CELL_EXTERNALS" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/externals/gtk_cell_externals.e"
+class-name: GTK_CELL_EXTERNALS
+parent-count: 0
+#
+208 "COLLECTION" 
+class-path: "/home/apps/SmartEiffel/lib/kernel/collection.e"
+class-name: COLLECTION
+parent-count: 1 parents: 164 
+#
+125 "GTK_MAIN" 
+class-path: "/home/richieb/Eiffel/eiflibs/eGTK/lib/gtk/gtk_main.e"
+class-name: GTK_MAIN
+parent-count: 1 parents: 126 
+#

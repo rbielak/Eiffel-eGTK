@@ -1,0 +1,111 @@
+.TH EGTKBUILD 1 "10th July 2000" "eGTK Eiffel library" "eGTK tools"
+.SH NAME
+egtkbuild \- Build an Eiffel project using eGTK
+
+.SH SYNOPSIS
+egtkbuild [-verbose] [-with_gnome]
+.I root-class
+
+.SH DESCRIPTION
+egtkbuild uses SmallEiffel to compile a system that depends on the eGTK
+class library.
+.PP
+The build, if successful, produces an executable called 
+.IR root-class .
+
+.SH OPTIONS
+.TP
+.B -verbose
+Show what egtkbuild itself is doing.  (You may also want to specify
+-verbose in the variable SE_OPTS.)
+.TP
+.B -with_gnome
+Include appropriate commands for using Gnome libraries in the C
+compilation commands.
+Use this option if you are using classes from $EGTK/lib/gnome.
+
+.SH CUSTOMISATION
+To customise the build for your personal preferences, you may set certain
+variables in 
+.IR $HOME/.egtkbuild.rc .
+To customise for a particular project, you can use 
+.IR ./.egtkbuild.rc ;
+if this exists it is used instead of
+.IR $HOME/.egtkbuild.rc .
+.PP
+.I .egtkbuild.rc
+must be Bourne shell script with execute permissions set
+for the current user.  If you assign to variables strings that contain
+white space, remember to enclose the whole string in quotes.
+.PP
+.I .egtkbuild.rc
+may set the following variables, which will override the default settings:
+.TP
+.B COMPILE
+The command to use to compile the project; the default is 
+.RB ' compile '.
+.TP
+.B DEBUG
+The flags to be given to the C compiler to control the inclusion of
+debugging aids in the object code; the default is
+.RB ' -g '.
+.TP
+.B OPTIMISE
+The flags to be given to the C compiler to control optimisation; the
+default is
+.RB ' -O '.
+.TP
+.B SE_OPTS
+The flags to be given to the SmallEiffel compiler; the default is 
+.RB ' "-no_strip -no_style_warning" '.
+.PP
+.I .egtkbuild.rc
+may also set the following variables, which will be prepended to the default
+options (therefore do not repeat the default options):
+.TP
+.B CECIL
+Additional cecil files to be included.  The default is
+.RB ' "-cecil ${EGTK}/C/se/cecil.se")
+.TP
+.B INCFLAGS
+Compiler options to specify additional directories to search for
+include files.  The default is
+.RB ' "-I. `gtk-config --cflags`" '.
+.TP
+.B EXTERNAL
+Other *.c and *.o files to include in the compilation.  By default this
+variable contains
+.RB " ${EGTK}/C/eif_gtk.c
+.BR ${EGTK}/C/se/eif_gtk_se.c ".
+.TP
+.B LIBS
+Compiler options to specify additional directories to search for
+libraries and libraries to include.  The default is
+.RB ' "`gtk-config --libs`" '
+or
+.RB ' "`gnome-config --libs gnome gnomeui`" '
+if
+.B -with_gnome
+is used.
+.PP
+The whole command to be run is
+.IP
+$COMPILE $SE_OPTS $CECIL ${root_class}.e -o ${root_class} $DEBUG $OPTIMISE $INCFLAGS $EXTERNAL $LIBS
+
+.SH FILES
+.TP
+.I $HOME/.egtkbuild.rc
+Settings for all builds by the user.
+.TP
+.I ./.egtkbuild.rc
+Settings for the project in the current directory.  This overrides
+any settings in
+.IR $HOME/.egtkbuild.rc .
+
+.SH SEE ALSO
+SmallEiffel documentation for 
+.BR compile.
+
+.SH AUTHOR
+egtkbuild and this manpage were written by Oliver Elphick
+<olly@lfix.co.uk>

@@ -1,0 +1,14 @@
+			-- assertion
+				-- The default level of assertion checking for the system.
+      		-- Choose the appropriate value: boost, no, require, ensure, 
+      		-- invariant, loop, check, all.
+			-- debug:
+				-- The default debug level for the system.
+     			-- Choose yes, no, or any "key" you wish. 
+
+--   local: "./CLUSTERNAME"
+--      default
+--         assertion (all);-- ( boost | no | require | ensure | invariant | loop | check | all )
+--         debug (yes); -- ( yes | no )
+--         trace (no); -- (yes | no )
+
